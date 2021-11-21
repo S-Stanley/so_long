@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "main.h"
+#include "../minilibx-linux/mlx.h"
 
 int	main(void)
 {
@@ -18,7 +19,7 @@ int	main(void)
 	void	*window;
 
 	mlx = mlx_init();
-	window = mlx_new_window(mlx, 1920, 1080, "Hello word");
+	window = mlx_new_window(mlx, 1000, 500, "Hello word");
 	mlx_loop(mlx);
 	return (0);
 }
