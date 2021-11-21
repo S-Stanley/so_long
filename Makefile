@@ -4,6 +4,8 @@ CC = clang
 FLAGS = -Wall -Wextra -Werror
 RM = rm -rf
 NAME = so_long
+MINILIBX_DIR = -I /usr/X11/include -g -L /usr/X11/lib -lX11 -L./minilibx-linux -lmlx -lXext
+MLX = minilibx-linux/
 
 all: $(NAME)
 
@@ -11,7 +13,8 @@ all: $(NAME)
 	$(CC) $(FLAGS) -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS)
-	$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+	make -C $(MLX)
+	$(CC) $(FLAGS) $(MINILIBX_DIR) $(OBJS) -o $(NAME)
 
 clean:
 	$(RM) $(OBJS)

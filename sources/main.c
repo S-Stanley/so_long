@@ -14,5 +14,11 @@
 
 int	main(void)
 {
+	void	*mlx;
+	void	*window;
+
+	mlx = mlx_init();
+	window = mlx_new_window(mlx, 1920, 1080, "Hello word");
+	mlx_loop(mlx);
 	return (0);
 }

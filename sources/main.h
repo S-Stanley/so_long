@@ -14,6 +14,6 @@
 # define MAIN_H
 
 # include <stdlib.h>
-# include <mlx.h>
+# include "../minilbx/mlx.h"
 
 #endif
