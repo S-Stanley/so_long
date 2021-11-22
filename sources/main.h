@@ -32,4 +32,6 @@ typedef struct	s_data {
 	int	endian;
 }		t_data;
 
+unsigned int	ft_strlen(const char *str);
+
 #endif

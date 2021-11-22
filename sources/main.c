@@ -23,7 +23,7 @@ void	put_img(void *mlx, void *window, char *path, int width, int height)
 	if (!img)
 	{
 		str = "Failed to get xpm image\n";
-		write(1, str, strlen(str));
+		write(1, str, ft_strlen(str));
 		exit(0);
 	}
 	mlx_put_image_to_window(mlx, window, img, 0, 0);
@@ -37,6 +37,21 @@ void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 	*(unsigned int*)dst = color;
 }
 
+void	put_pixel(void *mlx, void *window, int x, int y, int color)
+{
+	mlx_pixel_put(mlx, window, x, y, color);
+}
+
+void	put_pixel_via_img(void *mlx, void *window, int x, int y, int color)
+{
+        t_data  img;
+
+        img.img = mlx_new_image(mlx, 1000, 500);
+        img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
+        my_mlx_pixel_put(&img, x, y, color);
+        mlx_put_image_to_window(mlx, window, img.img, 0, 0);
+}
+
 int	main(void)
 {
 	void	*mlx;
@@ -45,17 +60,10 @@ int	main(void)
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, 1000, 500, "Hello word");
 	
-	/*
-	t_data	img;
-	img.img = mlx_new_image(mlx, 1000, 500);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
-	my_mlx_pixel_put(&img, 50, 50, 0x00D8FF);
-	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
-	*/
 
-	put_img(mlx, window, "textures/img.xpm", 0, 0);
-	
-	//mlx_pixel_put(mlx, window, 5, 5, 0x00D8FF);
+	put_img(mlx, window, "textures/img.xpm", 5, 5);
+	//put_pixel_via_img(mlx, window, 0x00D8FF);
+	//put_pixel(mlx, window, 5, 5, 0x00D8FF);
 	mlx_loop(mlx);
 	return (0);
 }

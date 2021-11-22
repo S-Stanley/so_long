@@ -1,4 +1,4 @@
-SRCS = sources/main.c
+SRCS = sources/main.c sources/ft_strlen.c
 OBJS = $(SRCS:.c=.o)
 CC = clang
 FLAGS = -Wall -Wextra -Werror
