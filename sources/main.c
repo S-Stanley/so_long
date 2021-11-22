@@ -12,14 +12,50 @@
 
 #include "main.h"
 #include "../minilibx-linux/mlx.h"
+#include <string.h>
+
+void	put_img(void *mlx, void *window, char *path, int width, int height)
+{
+	void	*img;
+	char	*str;
+
+	img = mlx_xpm_file_to_image(mlx, path, &width, &height);
+	if (!img)
+	{
+		str = "Failed to get xpm image\n";
+		write(1, str, strlen(str));
+		exit(0);
+	}
+	mlx_put_image_to_window(mlx, window, img, 0, 0);
+}
+
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->ll + x * (data->bpp / 8));
+	*(unsigned int*)dst = color;
+}
 
 int	main(void)
 {
 	void	*mlx;
 	void	*window;
-
+	
 	mlx = mlx_init();
 	window = mlx_new_window(mlx, 1000, 500, "Hello word");
+	
+	/*
+	t_data	img;
+	img.img = mlx_new_image(mlx, 1000, 500);
+	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
+	my_mlx_pixel_put(&img, 50, 50, 0x00D8FF);
+	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
+	*/
+
+	put_img(mlx, window, "textures/img.xpm", 0, 0);
+	
+	//mlx_pixel_put(mlx, window, 5, 5, 0x00D8FF);
 	mlx_loop(mlx);
 	return (0);
 }
