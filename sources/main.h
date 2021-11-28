@@ -15,6 +15,7 @@
 
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdio.h>
 # include "../minilibx-linux/mlx.h"
 
 typedef struct s_img {
