@@ -126,14 +126,24 @@ int	main(void)
 	window = mlx_new_window(mlx, size_win_x, size_win_y, "Hello word");
 	
 
-	char *line[] = {"0", "1", "0", "0", "1", 0};
-	// char	*line[] = {"0", 0};
-	// char	*line[] = {"0", "1", 0};
+	t_map	*map;
+	map = NULL;
+	char *line1[] = {"0", "1", "0", "0", "1", 0};
+	char *line2[] = {"0", "0", "1", "0", "1", 0};
 
-	size_x = size_win_x / count_len_matrice(line);
-	size_y = size_win_y / count_len_matrice(line);
+	map = lst_push_back(line1, map);
+	map = lst_push_back(line2, map);
+	// map[0] = line1;
+	// char map[1] = line2;
+	// char map[2] = 0;
 
-	draw_line(mlx, window, line, size_x, size_y);
+	print_lst(map);
+	exit(0);
+
+	size_x = size_win_x / count_len_matrice(line1);
+	size_y = size_win_y / count_len_matrice(line1);
+
+	draw_line(mlx, window, line1, size_x, size_y);
 	//put_img(mlx, window, "textures/img.xpm", 5, 5);
 	//put_pixel_via_img(mlx, window, 0, 0, 0x00D8FF);
 	//put_pixel(mlx, window, 5, 5, 0x00D8FF);

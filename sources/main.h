@@ -17,6 +17,12 @@
 # include <unistd.h>
 # include <stdio.h>
 # include "../minilibx-linux/mlx.h"
+# include "string.h"
+
+typedef struct s_map {
+	char	**line;
+	void	*next;
+}				t_map;
 
 typedef struct s_img {
 	void	*img;
@@ -34,5 +40,8 @@ typedef struct	s_data {
 }		t_data;
 
 unsigned int	ft_strlen(const char *str);
+t_map			*lst_push_back(char **line, t_map *map);
+t_map			*new_lst(char **line);
+void			print_lst(t_map *map);
 
 #endif
