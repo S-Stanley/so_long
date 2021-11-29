@@ -2,3 +2,5 @@ minilibx_mms_20200219/
 minilibx_opengl_20191021/
 so_long
 *.o
+a.out.dSYM/
+so_long.dSYM/
