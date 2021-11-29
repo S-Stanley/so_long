@@ -1,4 +1,6 @@
-SRCS = sources/main.c sources/ft_strlen.c sources/lst.c
+SRCS = \
+	sources/main.c sources/ft_strlen.c sources/lst.c sources/matrice.c \
+	sources/ft_strdup.c sources/draw.c sources/color.c
 OBJS = $(SRCS:.c=.o)
 CC = clang
 # FLAGS =m -Wall -Wextra -Werror #linux
