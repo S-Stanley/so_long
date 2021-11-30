@@ -62,5 +62,6 @@ void			draw_square(t_window win, int start_x, int start_y, int color);
 void			put_pixel(t_window win, int x, int y, int color);
 unsigned int	count_len_lst(t_map *map);
 t_map			*setup_map(void);
+t_window		setup_window(t_map *map);
 
 #endif

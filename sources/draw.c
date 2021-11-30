@@ -21,12 +21,12 @@ void	draw_square(t_window win, int start_x, int start_y, int color)
 	max_y = start_y + win.max_sq_y;
 	tmp_y = start_y;
 	max_x = start_x + (unsigned int)win.max_sq_x;
-	while (start_x <= max_x)
+	while (start_x <= (int)max_x)
 	{
 		start_y = tmp_y;
-		while (start_y <= max_y)
+		while (start_y <= (int)max_y)
 		{
-			put_pixel(win.mlx, win.win, start_x, start_y, color);
+			put_pixel(win, start_x, start_y, color);
 			start_y++;
 		}
 		start_x++;
