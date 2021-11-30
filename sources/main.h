@@ -48,7 +48,7 @@ char			*ft_strdup(const char *str);
 char			**copy_matrice(char **matrice);
 void			print_matrice(char **matrice);
 int				get_color(char *value);
-void			draw_line(void *mlx, void *window, char **line, int size_x, int size_y);
+void			draw_line(void *mlx, void *window, char **line, int size_x, int size_y, unsigned int line_nbr);
 void			draw_square(void *mlx, void *window, unsigned int start_x, unsigned int start_y, int color, int size_x);
 void			put_pixel(void *mlx, void *window, int x, int y, int color);
 

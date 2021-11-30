@@ -1,15 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   draw.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sserbin <stanleyserbin@gmail.com>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/11/30 00:51:35 by sserbin           #+#    #+#             */
+/*   Updated: 2021/11/30 00:51:36 by sserbin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
 
 void	draw_square(void *mlx, void *window, unsigned int start_x, unsigned int start_y, int color, int size_x)
 {
 	unsigned int	max_y;
 	unsigned int	max_x;
+	unsigned int	tmp_y;
 
-	max_y = start_y;
+	max_y = start_y + 40;
+	tmp_y = start_y;
 	max_x = start_x + (unsigned int)size_x;
 	while (start_x <= max_x)
 	{
-		start_y = 0;
+		start_y = tmp_y;
 		while (start_y <= max_y)
 		{
 			put_pixel(mlx, window, start_x, start_y, color);
@@ -19,7 +33,7 @@ void	draw_square(void *mlx, void *window, unsigned int start_x, unsigned int sta
 	}
 }
 
-void	draw_line(void *mlx, void *window, char **line, int size_x, int size_y)
+void	draw_line(void *mlx, void *window, char **line, int size_x, int size_y, unsigned int line_nbr)
 {
 	unsigned int	x;
 	unsigned int	y;
@@ -28,9 +42,9 @@ void	draw_line(void *mlx, void *window, char **line, int size_x, int size_y)
 	(void)size_y;
 	i = 0;
 	x = 0;
-	y = 40;
 	while (line[i])
 	{
+		y = 0 + (40 * (line_nbr - 1));
 		draw_square(mlx, window, x, y, get_color(line[i]), size_x);
 		i++;
 		x = x + size_x;

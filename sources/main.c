@@ -54,15 +54,16 @@ void	put_pixel_via_img(void *mlx, void *window, int x, int y, int color)
 
 int	main(void)
 {
-	void	*mlx;
-	void	*window;
-	int		size_win_x;
-	int		size_win_y;
-	int		size_x;
-	int		size_y;
-	t_map	*map;
-	char	*line1[] = {"0", "1", "0", "0", "1", 0};
-	char	*line2[] = {"0", "0", "1", "0", "1", 0};
+	void			*mlx;
+	void			*window;
+	int				size_win_x;
+	int				size_win_y;
+	int				size_x;
+	int				size_y;
+	t_map			*map;
+	char			*line1[] = {"0", "1", "0", "0", "1", 0};
+	char			*line2[] = {"0", "0", "1", "0", "1", 0};
+	unsigned int	line_nbr;
 
 	size_win_x = 1000;
 	size_win_y = 500;
@@ -71,11 +72,16 @@ int	main(void)
 	map = NULL;
 	map = lst_push_back(line1, map);
 	map = lst_push_back(line2, map);
-	print_lst(map);
-	exit(0);
 	size_x = size_win_x / count_len_matrice(line1);
 	size_y = size_win_y / count_len_matrice(line1);
-	draw_line(mlx, window, line1, size_x, size_y);
+	
+	line_nbr = 1;
+	while (map)
+	{
+		draw_line(mlx, window, map->line, size_x, size_y, line_nbr);
+		map = map->next;
+		line_nbr++;
+	}
 	mlx_loop(mlx);
 	return (0);
 }
