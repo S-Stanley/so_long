@@ -58,7 +58,7 @@ char			**copy_matrice(char **matrice);
 void			print_matrice(char **matrice);
 int				get_color(char *value);
 void			draw_line(t_window win, char **line, unsigned int line_nbr);
-void			draw_square(void *mlx, void *window, unsigned int start_x, unsigned int start_y, int color, int size_x, unsigned int max_size_y);
+void			draw_square(t_window win, int start_x, int start_y, int color);
 void			put_pixel(void *mlx, void *window, int x, int y, int color);
 unsigned int	count_len_lst(t_map *map);
 t_map			*setup_map();
