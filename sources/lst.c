@@ -57,6 +57,8 @@ unsigned int	count_len_lst(t_map *map)
 	unsigned int	i;
 
 	i = 0;
+	if (!map)
+		return (0);
 	while (map)
 	{
 		i++;

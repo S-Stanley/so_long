@@ -19,6 +19,15 @@
 # include "../minilibx-linux/mlx.h"
 # include "string.h"
 
+typedef struct s_window {
+	void			*mlx;
+	void			*win;
+	unsigned int	size_win_x;
+	unsigned int	size_win_y;
+	unsigned int	max_sq_x;
+	unsigned int	max_sq_y;
+}				t_window;
+
 typedef struct s_map {
 	char	**line;
 	void	*next;
@@ -48,9 +57,10 @@ char			*ft_strdup(const char *str);
 char			**copy_matrice(char **matrice);
 void			print_matrice(char **matrice);
 int				get_color(char *value);
-void			draw_line(void *mlx, void *window, char **line, int size_x, int size_y, unsigned int line_nbr, unsigned int max_size_y);
+void			draw_line(t_window win, char **line, unsigned int line_nbr);
 void			draw_square(void *mlx, void *window, unsigned int start_x, unsigned int start_y, int color, int size_x, unsigned int max_size_y);
 void			put_pixel(void *mlx, void *window, int x, int y, int color);
 unsigned int	count_len_lst(t_map *map);
+t_map			*setup_map();
 
 #endif

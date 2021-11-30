@@ -33,20 +33,19 @@ void	draw_square(void *mlx, void *window, unsigned int start_x, unsigned int sta
 	}
 }
 
-void	draw_line(void *mlx, void *window, char **line, int size_x, int size_y, unsigned int line_nbr, unsigned int max_size_y)
+void	draw_line(t_window win, char **line, unsigned int line_nbr)
 {
 	unsigned int	x;
 	unsigned int	y;
 	unsigned int	i;
 
-	(void)size_y;
 	i = 0;
 	x = 0;
 	while (line[i])
 	{
-		y = 0 + (max_size_y * (line_nbr - 1));
-		draw_square(mlx, window, x, y, get_color(line[i]), size_x, max_size_y);
+		y = 0 + (win.max_sq_y * (line_nbr - 1));
+		draw_square(win.mlx, win.win, x, y, get_color(line[i]), win.max_sq_x, win.max_sq_y);
 		i++;
-		x = x + size_x;
+		x = x + win.max_sq_x;
 	}
 }

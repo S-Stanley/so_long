@@ -14,77 +14,45 @@
 #include "../minilibx-linux/mlx.h"
 #include <string.h>
 
-void	put_img(void *mlx, void *window, char *path, int width, int height)
+t_window	setup_window(t_map *map)
 {
-	void	*img;
-	char	*str;
+	t_window	window;
 
-	img = mlx_xpm_file_to_image(mlx, path, &width, &height);
-	if (!img)
+	window.size_win_x = 1000;
+	window.size_win_y = 500;
+	window.mlx = mlx_init();
+	window.win = mlx_new_window(window.mlx, window.size_win_x, window.size_win_y, "so_long");
+	if (count_len_lst(map) > 0)
 	{
-		str = "Failed to get xpm image\n";
-		write(1, str, ft_strlen(str));
-		exit(0);
+		window.max_sq_x = window.size_win_x / count_len_matrice(map->line);
+		window.max_sq_y = window.size_win_y / count_len_lst(map);
 	}
-	mlx_put_image_to_window(mlx, window, img, 0, 0);
-}
-
-void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
-{
-	char	*dst;
-
-	dst = data->addr + (y * data->ll + x * (data->bpp / 8));
-	*(unsigned int *)dst = color;
-}
-
-void	put_pixel(void *mlx, void *window, int x, int y, int color)
-{
-	mlx_pixel_put(mlx, window, x, y, color);
-}
-
-void	put_pixel_via_img(void *mlx, void *window, int x, int y, int color)
-{
-	t_data	img;
-
-	img.img = mlx_new_image(mlx, 1000, 500);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
-	my_mlx_pixel_put(&img, x, y, color);
-	mlx_put_image_to_window(mlx, window, img.img, 0, 0);
+	else
+	{
+		window.max_sq_y = 0;
+		window.max_sq_x = 0;
+	}
+	return (window);
 }
 
 int	main(void)
 {
-	void			*mlx;
-	void			*window;
-	int				size_win_x;
-	int				size_win_y;
 	int				size_x;
-	int				size_y;
 	t_map			*map;
-	char			*line1[] = {"0", "1", "0", "0", "1", 0};
-	char			*line2[] = {"0", "0", "1", "0", "1", 0};
 	unsigned int	line_nbr;
 	unsigned int	max_size_y;
+	t_window		window;
 
-	size_win_x = 1000;
-	size_win_y = 500;
-	mlx = mlx_init();
-	window = mlx_new_window(mlx, size_win_x, size_win_y, "Hello word");
-	map = NULL;
-	map = lst_push_back(line1, map);
-	map = lst_push_back(line2, map);
-	size_x = size_win_x / count_len_matrice(line1);
-	size_y = size_win_y / count_len_matrice(line1);
-	
+	map = setup_map();
+	window = setup_window(map);
 	line_nbr = 1;
-	max_size_y = size_win_y / count_len_lst(map);
 	while (map)
 	{
-		draw_line(mlx, window, map->line, size_x, size_y, line_nbr, max_size_y);
+		draw_line(window, map->line, line_nbr);
 		map = map->next;
 		line_nbr++;
 	}
-	mlx_loop(mlx);
+	mlx_loop(window.mlx);
 	return (0);
 }
 
