@@ -64,6 +64,7 @@ int	main(void)
 	char			*line1[] = {"0", "1", "0", "0", "1", 0};
 	char			*line2[] = {"0", "0", "1", "0", "1", 0};
 	unsigned int	line_nbr;
+	unsigned int	max_size_y;
 
 	size_win_x = 1000;
 	size_win_y = 500;
@@ -76,9 +77,10 @@ int	main(void)
 	size_y = size_win_y / count_len_matrice(line1);
 	
 	line_nbr = 1;
+	max_size_y = size_win_y / count_len_lst(map);
 	while (map)
 	{
-		draw_line(mlx, window, map->line, size_x, size_y, line_nbr);
+		draw_line(mlx, window, map->line, size_x, size_y, line_nbr, max_size_y);
 		map = map->next;
 		line_nbr++;
 	}

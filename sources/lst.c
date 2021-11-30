@@ -51,3 +51,16 @@ void	print_lst(t_map *map)
 		map = map->next;
 	}
 }
+
+unsigned int	count_len_lst(t_map *map)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (map)
+	{
+		i++;
+		map = map->next;
+	}
+	return (i);
+}
