@@ -35,8 +35,8 @@ void	draw_square(t_window win, int start_x, int start_y, int color)
 
 void	draw_line(t_window win, char **line, unsigned int line_nbr)
 {
-	int	x;
-	int	y;
+	int				x;
+	int				y;
 	unsigned int	i;
 
 	i = 0;

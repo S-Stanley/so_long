@@ -16,23 +16,27 @@
 
 t_window	setup_window(t_map *map)
 {
-	t_window	window;
+	t_window	win;
 
-	window.size_win_x = 1000;
-	window.size_win_y = 500;
-	window.mlx = mlx_init();
-	window.win = mlx_new_window(window.mlx, window.size_win_x, window.size_win_y, "so_long");
+	win.size_win_x = 1000;
+	win.size_win_y = 500;
+	win.mlx = mlx_init();
+	win.win = mlx_new_window(
+			win.mlx,
+			win.size_win_x,
+			win.size_win_y,
+			"so_long");
 	if (count_len_lst(map) > 0)
 	{
-		window.max_sq_x = window.size_win_x / count_len_matrice(map->line);
-		window.max_sq_y = window.size_win_y / count_len_lst(map);
+		win.max_sq_x = win.size_win_x / count_len_matrice(map->line);
+		win.max_sq_y = win.size_win_y / count_len_lst(map);
 	}
 	else
 	{
-		window.max_sq_y = 0;
-		window.max_sq_x = 0;
+		win.max_sq_y = 0;
+		win.max_sq_x = 0;
 	}
-	return (window);
+	return (win);
 }
 
 int	main(void)
