@@ -14,9 +14,15 @@
 
 int	get_color(char *value)
 {
-	if (atoi(value) == 0)
-		return (0x00D8FF);
-	if (atoi(value) == 1)
+	if (value[0] == 'P')
+		return (0xffffff);
+	if (value[0] == 'C')
+		return (0xcccccc);
+	if (value[0] == 'E')
+		return (0x2f1b0c);
+	if (value[0] == '0')
 		return (0x50c836);
+	if (value[0] == '1')
+		return (0x00D8FF);
 	return (0x00D8FF);
 }
