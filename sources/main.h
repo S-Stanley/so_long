@@ -35,8 +35,8 @@ typedef struct s_window {
 }				t_window;
 
 typedef struct s_player {
-	int	posX;
-	int posY;
+	int	pos_x;
+	int	pos_y;
 }				t_player;
 
 typedef struct s_img {
@@ -70,5 +70,9 @@ unsigned int	count_len_lst(t_map *map);
 t_map			*setup_map(void);
 t_window		setup_window(t_map *map);
 char			*ft_itoa(int nb);
+void			draw_map(t_window window, t_map *map);
+void			on_key_press(int keycode, t_window *window);
+t_map			*move_top(t_map	*map, t_player player);
+t_player		get_player_position(t_map *map);
 
 #endif

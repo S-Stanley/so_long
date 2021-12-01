@@ -3,7 +3,7 @@
 unsigned int	size_malloc_itoa(int nb)
 {
 	unsigned int	count;
-	
+
 	count = 1;
 	if (nb < 0)
 	{

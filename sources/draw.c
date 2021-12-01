@@ -33,6 +33,19 @@ void	draw_square(t_window win, int start_x, int start_y, int color)
 	}
 }
 
+void	draw_map(t_window window, t_map *map)
+{
+	unsigned int	line_nbr;
+
+	line_nbr = 1;
+	while (map)
+	{
+		draw_line(window, map->line, line_nbr);
+		map = map->next;
+		line_nbr++;
+	}
+}
+
 void	draw_line(t_window win, char **line, unsigned int line_nbr)
 {
 	int				x;

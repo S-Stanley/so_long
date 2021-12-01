@@ -1,7 +1,8 @@
 SRCS = \
 	sources/main.c sources/ft_strlen.c sources/lst.c sources/matrice.c \
 	sources/ft_strdup.c sources/draw.c sources/color.c sources/parsing.c \
-	sources/pixel.c sources/win.c sources/ft_itoa.c
+	sources/pixel.c sources/win.c sources/ft_itoa.c sources/hook.c \
+	sources/movement.c sources/player.c
 OBJS = $(SRCS:.c=.o)
 CC = clang
 # FLAGS =m -Wall -Wextra -Werror #linux
