@@ -16,15 +16,17 @@ void	put_img(t_window win, char *path, int width, int height)
 {
 	void	*img;
 	char	*str;
+	int		img_width;
+	int		img_height;
 
-	img = mlx_xpm_file_to_image(win.mlx, path, &width, &height);
+	img = mlx_xpm_file_to_image(win.mlx, path, &img_width, &img_height);
 	if (!img)
 	{
 		str = "Failed to get xpm image\n";
 		write(1, str, ft_strlen(str));
 		exit(0);
 	}
-	mlx_put_image_to_window(win.mlx, win.win, img, 0, 0);
+	mlx_put_image_to_window(win.mlx, win.win, img, width, height);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

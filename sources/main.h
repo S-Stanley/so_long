@@ -74,5 +74,6 @@ void			draw_map(t_window window, t_map *map);
 void			on_key_press(int keycode, t_window *window);
 t_map			*move_top(t_map	*map, t_player player);
 t_player		get_player_position(t_map *map);
+void			put_img(t_window win, char *path, int width, int height);
 
 #endif
