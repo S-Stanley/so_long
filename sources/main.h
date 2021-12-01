@@ -19,6 +19,11 @@
 # include "../minilibx-linux/mlx.h"
 # include "string.h"
 
+typedef struct s_map {
+	char	**line;
+	void	*next;
+}				t_map;
+
 typedef struct s_window {
 	void			*mlx;
 	void			*win;
@@ -26,12 +31,13 @@ typedef struct s_window {
 	unsigned int	size_win_y;
 	unsigned int	max_sq_x;
 	unsigned int	max_sq_y;
+	t_map			*map;
 }				t_window;
 
-typedef struct s_map {
-	char	**line;
-	void	*next;
-}				t_map;
+typedef struct s_player {
+	int	posX;
+	int posY;
+}				t_player;
 
 typedef struct s_img {
 	void	*img;
@@ -63,5 +69,6 @@ void			put_pixel(t_window win, int x, int y, int color);
 unsigned int	count_len_lst(t_map *map);
 t_map			*setup_map(void);
 t_window		setup_window(t_map *map);
+char			*ft_itoa(int nb);
 
 #endif
