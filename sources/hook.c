@@ -1,6 +1,6 @@
 #include "main.h"
 
-void	on_key_press(int keycode, t_window *window)
+int	on_key_press(int keycode, t_window *window)
 {
 	t_player	player;
 
@@ -17,4 +17,5 @@ void	on_key_press(int keycode, t_window *window)
 	// 	move_right();
 	write(1, ft_itoa(keycode), ft_strlen(ft_itoa(keycode)));
 	write(1, "\n", 1);
+	return (0);
 }

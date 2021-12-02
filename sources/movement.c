@@ -26,7 +26,11 @@ t_map	*move_top(t_map	*map, t_player player, t_window win)
 
 unsigned int	can_he_move_bottom(t_map *map, t_player player)
 {
-
+	while (--player.pos_y >= -1)
+		map = map->next;
+	if (map->line[player.pos_x][0] == '1')
+		return (0);
+	return (1);
 }
 
 t_map	*move_bottom(t_map	*map, t_player player, t_window win)
@@ -34,11 +38,15 @@ t_map	*move_bottom(t_map	*map, t_player player, t_window win)
 	t_map	*tmp;
 
 	tmp = map;
-	if (can_he_move_bottom(map, player))
-	{
-		
-	}
-	(void)player;
-	(void)win;
+	if (!can_he_move_bottom(map, player))
+		return (tmp);
+	while (--player.pos_y >= 0)
+		map = map->next;
+	free(map->line[player.pos_x]);
+	map->line[player.pos_x] = ft_strdup("0");
+	map = map->next;
+	map->line[player.pos_x] = ft_strdup("P");
+	win.map = tmp;
+	draw_map(win, win.map);
 	return (tmp);
 }

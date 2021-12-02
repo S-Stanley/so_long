@@ -24,4 +24,5 @@ t_player	get_player_position(t_map *map)
 		player.pos_y++;
 		map = map->next;
 	}
+	return (player);
 }
