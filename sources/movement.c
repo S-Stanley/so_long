@@ -28,7 +28,14 @@ unsigned int	can_he_move_here(char pos, t_window win)
 	return (0);
 }
 
-t_map	*move_top(t_map	*map, t_player player, t_window win)
+unsigned int	print_move(unsigned int	nb_move)
+{
+	nb_move++;
+	printf("Move number: %d\n", nb_move);
+	return (nb_move);
+}
+
+t_window	move_top(t_map	*map, t_player player, t_window win)
 {
 	unsigned int	i;
 	t_map			*tmp;
@@ -41,7 +48,7 @@ t_map	*move_top(t_map	*map, t_player player, t_window win)
 		player.pos_y--;
 	}
 	if (!can_he_move_here(map->line[player.pos_x][0], win))
-		return (tmp);
+		return (win);
 	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("P");
 	map = map->next;
@@ -49,7 +56,8 @@ t_map	*move_top(t_map	*map, t_player player, t_window win)
 	map->line[player.pos_x] = ft_strdup("0");
 	win.map = tmp;
 	draw_map(win);
-	return (tmp);
+	win.nb_move = print_move(win.nb_move);
+	return (win);
 }
 
 
@@ -66,13 +74,13 @@ unsigned int	can_he_move_bottom(t_map *map, t_player player, t_window win)
 	return (1);
 }
 
-t_map	*move_bottom(t_map *map, t_player player, t_window win)
+t_window	move_bottom(t_map *map, t_player player, t_window win)
 {
 	t_map	*tmp;
 
 	tmp = map;
 	if (!can_he_move_bottom(map, player, win))
-		return (tmp);
+		return (win);
 	while (--player.pos_y >= 0)
 		map = map->next;
 	free(map->line[player.pos_x]);
@@ -82,10 +90,11 @@ t_map	*move_bottom(t_map *map, t_player player, t_window win)
 	map->line[player.pos_x] = ft_strdup("P");
 	win.map = tmp;
 	draw_map(win);
-	return (tmp);
+	win.nb_move = print_move(win.nb_move);
+	return (win);
 }
 
-t_map	*move_left(t_map *map, t_player player, t_window win)
+t_window	move_left(t_map *map, t_player player, t_window win)
 {
 	t_map	*tmp;
 
@@ -93,17 +102,18 @@ t_map	*move_left(t_map *map, t_player player, t_window win)
 	while (--player.pos_y >= 0)
 		map = map->next;
 	if (!can_he_move_here(map->line[player.pos_x - 1][0], win))
-		return (tmp);
+		return (win);
 	free(map->line[player.pos_x - 1]);
 	map->line[player.pos_x - 1] = ft_strdup("P");
 	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("0");
 	win.map = tmp;
 	draw_map(win);
-	return (tmp);
+	win.nb_move = print_move(win.nb_move);
+	return (win);
 }
 
-t_map	*move_right(t_map *map, t_player player, t_window win)
+t_window	move_right(t_map *map, t_player player, t_window win)
 {
 	t_map	*tmp;
 
@@ -111,12 +121,13 @@ t_map	*move_right(t_map *map, t_player player, t_window win)
 	while (--player.pos_y >= 0)
 		map = map->next;
 	if (!can_he_move_here(map->line[player.pos_x + 1][0], win))
-		return (tmp);
+		return (win);
 	free(map->line[player.pos_x + 1]);
 	map->line[player.pos_x + 1] = ft_strdup("P");
 	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("0");
 	win.map = tmp;
 	draw_map(win);
-	return (tmp);
+	win.nb_move = print_move(win.nb_move);
+	return (win);
 }

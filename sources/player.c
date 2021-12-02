@@ -14,10 +14,7 @@ t_player	get_player_position(t_map *map)
 		while (map->line[i])
 		{
 			if (map->line[i][0] == 'P')
-			{
-				printf("Player position -> %d:%d\n", player.pos_x, player.pos_y);
 				return (player);
-			}
 			player.pos_x++;
 			i++;
 		}

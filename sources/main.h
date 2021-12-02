@@ -31,6 +31,7 @@ typedef struct s_window {
 	unsigned int	size_win_y;
 	unsigned int	max_sq_x;
 	unsigned int	max_sq_y;
+	unsigned int	nb_move;
 	t_map			*map;
 }				t_window;
 
@@ -72,14 +73,14 @@ t_window		setup_window(t_map *map);
 char			*ft_itoa(int nb);
 void			draw_map(t_window window);
 int				on_key_press(int keycode, t_window *window);
-t_map			*move_top(t_map	*map, t_player player, t_window win);
+t_window		move_top(t_map	*map, t_player player, t_window win);
 t_player		get_player_position(t_map *map);
 void			put_img(t_window win, char *path, int width, int height);
-t_map			*move_bottom(t_map	*map, t_player player, t_window win);
+t_window		move_bottom(t_map	*map, t_player player, t_window win);
 void			free_lst(t_map *map);
 void			free_that_matrice(char **matrice);
-t_map			*move_left(t_map *map, t_player player, t_window win);
-t_map			*move_right(t_map *map, t_player player, t_window win);
+t_window		move_left(t_map *map, t_player player, t_window win);
+t_window		move_right(t_map *map, t_player player, t_window win);
 void			exit_game(t_window window);
 
 #endif
