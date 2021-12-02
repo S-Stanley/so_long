@@ -78,5 +78,7 @@ void			put_img(t_window win, char *path, int width, int height);
 t_map			*move_bottom(t_map	*map, t_player player, t_window win);
 void			free_lst(t_map *map);
 void			free_that_matrice(char **matrice);
+t_map			*move_left(t_map *map, t_player player, t_window win);
+t_map			*move_right(t_map *map, t_player player, t_window win);
 
 #endif
