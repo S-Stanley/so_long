@@ -16,8 +16,8 @@ t_window	setup_window(t_map *map)
 {
 	t_window	win;
 
-	win.size_win_x = 1000;
-	win.size_win_y = 500;
+	win.size_win_x = count_len_matrice(map->line) * 42;
+	win.size_win_y = count_len_lst(map) * 42;
 	win.mlx = mlx_init();
 	win.win = mlx_new_window(
 			win.mlx,

@@ -46,6 +46,24 @@ void	draw_map(t_window window)
 	}
 }
 
+char	*get_image_path(char code)
+{
+	if (code == 'P')
+		return ("textures/42/dauphin.xpm");
+	if (code == 'C')
+		return ("textures/2x42/coin.xpm");
+	if (code == 'E')
+		return ("textures/42/door.xpm");
+	if (code == '0')
+		return ("textures/42/grass.xpm");
+	return ("textures/42/wall.xpm");
+}
+
+void	draw_img(t_window win, int start_x, int start_y, char *path)
+{
+	put_img(win, path, start_x, start_y);
+}
+
 void	draw_line(t_window win, char **line, unsigned int line_nbr)
 {
 	int				x;
@@ -57,7 +75,7 @@ void	draw_line(t_window win, char **line, unsigned int line_nbr)
 	while (line[i])
 	{
 		y = 0 + (win.max_sq_y * (line_nbr - 1));
-		draw_square(win, x, y, get_color(line[i]));
+		draw_img(win, x, y, get_image_path(line[i][0]));
 		i++;
 		x = x + win.max_sq_x;
 	}
