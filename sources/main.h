@@ -70,11 +70,13 @@ unsigned int	count_len_lst(t_map *map);
 t_map			*setup_map(void);
 t_window		setup_window(t_map *map);
 char			*ft_itoa(int nb);
-void			draw_map(t_window window, t_map *map);
+void			draw_map(t_window window);
 int				on_key_press(int keycode, t_window *window);
 t_map			*move_top(t_map	*map, t_player player, t_window win);
 t_player		get_player_position(t_map *map);
 void			put_img(t_window win, char *path, int width, int height);
 t_map			*move_bottom(t_map	*map, t_player player, t_window win);
+void			free_lst(t_map *map);
+void			free_that_matrice(char **matrice);
 
 #endif

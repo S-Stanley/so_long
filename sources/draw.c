@@ -33,15 +33,15 @@ void	draw_square(t_window win, int start_x, int start_y, int color)
 	}
 }
 
-void	draw_map(t_window window, t_map *map)
+void	draw_map(t_window window)
 {
 	unsigned int	line_nbr;
 
 	line_nbr = 1;
-	while (map)
+	while (window.map)
 	{
-		draw_line(window, map->line, line_nbr);
-		map = map->next;
+		draw_line(window, window.map->line, line_nbr);
+		window.map = window.map->next;
 		line_nbr++;
 	}
 }

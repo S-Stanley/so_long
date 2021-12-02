@@ -34,5 +34,6 @@ t_window	setup_window(t_map *map)
 		win.max_sq_y = 0;
 		win.max_sq_x = 0;
 	}
+	win.map = map;
 	return (win);
 }

@@ -66,3 +66,17 @@ unsigned int	count_len_lst(t_map *map)
 	}
 	return (i);
 }
+
+void	free_lst(t_map *map)
+{
+	t_map	*tmp;
+
+	tmp = map;
+	while (map)
+	{
+		tmp = map->next;
+		free_that_matrice(map->line);
+		free(map);
+		map = tmp;
+	}
+}

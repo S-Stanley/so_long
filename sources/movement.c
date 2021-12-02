@@ -17,9 +17,10 @@ t_map	*move_top(t_map	*map, t_player player, t_window win)
 	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("P");
 	map = map->next;
+	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("0");
 	win.map = tmp;
-	draw_map(win, win.map);
+	draw_map(win);
 	return (tmp);
 }
 
@@ -45,8 +46,9 @@ t_map	*move_bottom(t_map	*map, t_player player, t_window win)
 	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("0");
 	map = map->next;
+	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("P");
 	win.map = tmp;
-	draw_map(win, win.map);
+	draw_map(win);
 	return (tmp);
 }

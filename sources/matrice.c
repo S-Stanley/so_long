@@ -54,3 +54,16 @@ void	print_matrice(char **matrice)
 	}
 	write(1, "\n", 1);
 }
+
+void	free_that_matrice(char **matrice)
+{
+	unsigned int	i;
+
+	i = 0;
+	while (matrice[i])
+	{
+		free(matrice[i]);
+		i++;
+	}
+	free(matrice);
+}

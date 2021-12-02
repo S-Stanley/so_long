@@ -6,7 +6,12 @@ int	on_key_press(int keycode, t_window *window)
 
 	player = get_player_position(window->map);
 	if (keycode == 65307)
+	{
+		mlx_destroy_window(window->mlx, window->win);
+		mlx_destroy_display(window->mlx);
+		free_lst(window->map);
 		exit(0);
+	}
 	if (keycode == 65362 || keycode == 97)
 		window->map = move_top(window->map, player, *(window));
 	if (keycode == 65364 || keycode == 119)
@@ -15,7 +20,5 @@ int	on_key_press(int keycode, t_window *window)
 	// 	move_left();
 	// if (keycode == 65363 || keycode == 100)
 	// 	move_right();
-	write(1, ft_itoa(keycode), ft_strlen(ft_itoa(keycode)));
-	write(1, "\n", 1);
 	return (0);
 }
