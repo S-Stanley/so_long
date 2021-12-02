@@ -8,12 +8,9 @@ void	on_key_press(int keycode, t_window *window)
 	if (keycode == 65307)
 		exit(0);
 	if (keycode == 65362 || keycode == 97)
-	{
-		window->map = move_top(window->map, player);
-		draw_map(*(window), window->map);
-	}
-	// if (keycode == 65364 || keycode == 119)
-	// 	move_bottom();
+		window->map = move_top(window->map, player, *(window));
+	if (keycode == 65364 || keycode == 119)
+		window->map = move_bottom(window->map, player, *(window));
 	// if (keycode == 65361 || keycode == 115)
 	// 	move_left();
 	// if (keycode == 65363 || keycode == 100)
