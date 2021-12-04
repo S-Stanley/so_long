@@ -71,7 +71,6 @@ t_img			*draw_line(t_window win, char **line, unsigned int line_nbr);
 void			draw_square(t_window win, int start_x, int start_y, int color);
 void			put_pixel(t_window win, int x, int y, int color);
 unsigned int	count_len_lst(t_map *map);
-t_map			*setup_map(void);
 t_window		setup_window(t_map *map);
 char			*ft_itoa(int nb);
 t_img			*draw_map(t_window window);
@@ -87,5 +86,6 @@ t_window		move_right(t_map *map, t_player player, t_window win);
 void			exit_game(t_window window);
 void			free_images(t_img *img, t_window win);
 char			**push_arr(char **arr, char *to_add);
+t_map			*setup_map(const char *file);
 
 #endif
