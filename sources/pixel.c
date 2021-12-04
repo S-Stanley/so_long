@@ -78,13 +78,3 @@ void	put_pixel(t_window win, int x, int y, int color)
 {
 	mlx_pixel_put(win.mlx, win.win, x, y, color);
 }
-
-void	put_pixel_via_img(t_window win, int x, int y, int color)
-{
-	t_data	img;
-
-	img.img = mlx_new_image(win.mlx, 1000, 500);
-	img.addr = mlx_get_data_addr(img.img, &img.bpp, &img.ll, &img.endian);
-	my_mlx_pixel_put(&img, x, y, color);
-	mlx_put_image_to_window(win.mlx, win.win, img.img, 0, 0);
-}
