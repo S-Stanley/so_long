@@ -12,21 +12,58 @@
 
 #include "main.h"
 
+t_img	*image_push_back(t_img *new_image, t_img *img)
+{
+	t_img	*tmp;
+
+	// if (!new_image)
+	// 	return (NULL);
+	printf("pusing new image\n");
+	if (!img)
+		return (new_image);
+	printf("lopping win.img");
+	tmp = img;
+	while (img->next)
+		img = img->next;
+	img->next = new_image;
+	return (tmp);
+}
+
+void	free_images(t_img *img, t_window win)
+{
+	t_img	*tmp;
+
+	if (!img)
+		return ;
+	tmp = img;
+	while (img)
+	{
+		printf("destroying img\n");
+		tmp = img->next;
+		mlx_destroy_image(win.mlx, img);
+		free(img);
+		img = tmp;
+	}
+}
+
 void	put_img(t_window win, char *path, int width, int height)
 {
-	void	*img;
+	t_img	*image;
 	char	*str;
-	int		img_width;
-	int		img_height;
 
-	img = mlx_xpm_file_to_image(win.mlx, path, &img_width, &img_height);
-	if (!img)
+	image = malloc(sizeof(t_img));
+	if (!image)
+		return ;
+	image->img = mlx_xpm_file_to_image(win.mlx, path, &image->width, &image->height);
+	if (!image->img)
 	{
 		str = "Failed to get xpm image\n";
 		write(1, str, ft_strlen(str));
 		exit(0);
 	}
-	mlx_put_image_to_window(win.mlx, win.win, img, width, height);
+	image->next = NULL;
+	mlx_put_image_to_window(win.mlx, win.win, image->img, width, height);
+	win.img = image_push_back(image, win.img);
 }
 
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)

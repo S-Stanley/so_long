@@ -24,6 +24,14 @@ typedef struct s_map {
 	void	*next;
 }				t_map;
 
+typedef struct s_img {
+	void	*img;
+	char	*path;
+	int		width;
+	int		height;
+	void	*next;
+}		t_img;
+
 typedef struct s_window {
 	void			*mlx;
 	void			*win;
@@ -33,19 +41,13 @@ typedef struct s_window {
 	unsigned int	max_sq_y;
 	unsigned int	nb_move;
 	t_map			*map;
+	t_img			*img;
 }				t_window;
 
 typedef struct s_player {
 	int	pos_x;
 	int	pos_y;
 }				t_player;
-
-typedef struct s_img {
-	void	*img;
-	char	*path;
-	int		width;
-	int		height;
-}		t_img;
 
 typedef struct s_data {
 	void	*img;
@@ -82,5 +84,6 @@ void			free_that_matrice(char **matrice);
 t_window		move_left(t_map *map, t_player player, t_window win);
 t_window		move_right(t_map *map, t_player player, t_window win);
 void			exit_game(t_window window);
+void			free_images(t_img *img, t_window win);
 
 #endif

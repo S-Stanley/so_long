@@ -21,8 +21,6 @@ int	main(void)
 
 	map = setup_map();
 	window = setup_window(map);
-	// // put_img(window, "textures/dauphin.xpm", 50, 50);
-	// // window.map = map;
 	draw_map(window);
 	get_player_position(map);
 	mlx_hook(window.win, 2, 1L << 0, on_key_press, &window);

@@ -33,6 +33,37 @@ void	draw_square(t_window win, int start_x, int start_y, int color)
 	}
 }
 
+// void	destroy_map(t_window window)
+// {
+// 	unsigned int	line_nbr;
+
+// 	line_nbr = 1;
+// 	while (window.map)
+// 	{
+// 		destroy_line(window, window.map->line, line_nbr);
+// 		window.map = window.map->next;
+// 		line_nbr++;
+// 	}
+// }
+
+// void	destroy_line(t_window win, char **line, unsigned int line_nbr)
+// {
+// 	int				x;
+// 	int				y;
+// 	unsigned int	i;
+
+// 	i = 0;
+// 	x = 0;
+// 	while (line[i])
+// 	{
+// 		y = 0 + (win.max_sq_y * (line_nbr - 1));
+// 		put_img(win, get_image_path(line[i][0]), x, y);
+// 		// mlx_destroy_image(win, );
+// 		i++;
+// 		x = x + win.max_sq_x;
+// 	}
+// }
+
 void	draw_map(t_window window)
 {
 	unsigned int	line_nbr;
