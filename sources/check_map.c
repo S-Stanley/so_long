@@ -62,7 +62,27 @@ unsigned int	check_playable(t_map *map)
 
 void	is_map_closed(t_map *map)
 {
-	(void)map;
+	unsigned int	i;
+
+	i = 0;
+	while (map->line[i])
+	{
+		if (map->line[i][0] != '1')
+			return (0);
+		i++;
+	}
+	while (map->next)
+	{
+		map = map->next;
+	}
+	i = 0;
+	while (map->line[i])
+	{
+		if (map->line[i][0] != '1')
+			return (0);
+		i++;
+	}
+	return (1);
 }
 
 void	check_map(t_map *map)
