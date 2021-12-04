@@ -26,7 +26,7 @@ char	*create_str_from_char(char c)
 	return (to_return);
 }
 
-void	get_file_data(const char *file)
+t_map	*get_file_data(const char *file)
 {
 	int				fd;
 	char			*buffer;
@@ -75,26 +75,23 @@ void	get_file_data(const char *file)
 		} 
 		free(buffer);
 	}
-	// print_matrice(arr);
 	map = lst_push_back(arr, map);
 	free_that_matrice(arr);
-	print_lst(map);
-	free_lst(map);
 	close(fd);
+	return (map);
 }
 
 int	main(int argc, char **argv)
 {
-	// t_map			*map;
-	// t_window		window;
+	t_map			*map;
+	t_window		window;
 
 	(void)argc;
-	get_file_data(argv[1]);
-	// map = setup_map();
-	// window = setup_window(map);
-	// window.img = draw_map(window);
-	// get_player_position(map);
-	// mlx_hook(window.win, 2, 1L << 0, on_key_press, &window);
-	// mlx_loop(window.mlx);
+	map = get_file_data(argv[1]);
+	window = setup_window(map);
+	window.img = draw_map(window);
+	get_player_position(map);
+	mlx_hook(window.win, 2, 1L << 0, on_key_press, &window);
+	mlx_loop(window.mlx);
 	return (0);
 }
