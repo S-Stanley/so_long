@@ -31,24 +31,18 @@ char	*create_str_from_char(char c)
 	return (to_return);
 }
 
-t_map	*setup_map(const char *file)
+typedef struct s_parsing {
+	t_map	*map;
+	char	**arr;
+}	t_parsing;
+
+t_map	*get_map_from_file(int fd, t_map *map, int reading, char **arr)
 {
-	int				fd;
 	char			*buffer;
 	int				buffer_size;
-	int				reading;
 	unsigned int	i;
-	char			**arr;
-	t_map			*map;
 
 	buffer_size = 5;
-	i = 0;
-	fd = open(file, O_RDONLY);
-	if (!fd)
-		print_and_exit("Cannot open file\n");
-	reading = 2;
-	arr = NULL;
-	map = NULL;
 	while (reading > 0)
 	{
 		buffer = malloc(sizeof(char *) * (buffer_size + 1));
@@ -67,15 +61,29 @@ t_map	*setup_map(const char *file)
 				i++;
 			}
 			else
-			{
-				arr = push_arr(arr, create_str_from_char(buffer[i]));
-				i++;
-			}
+				arr = push_arr(arr, create_str_from_char(buffer[i++]));
 		}
 		free(buffer);
 	}
 	map = lst_push_back(arr, map);
 	free_that_matrice(arr);
+	return (map);
+}
+
+t_map	*setup_map(const char *file)
+{
+	int				fd;
+	int				reading;
+	t_map			*map;
+	char			**arr;
+
+	fd = open(file, O_RDONLY);
+	if (!fd)
+		print_and_exit("Cannot open file\n");
+	reading = 2;
+	map = NULL;
+	arr = NULL;
+	map = get_map_from_file(fd, map, reading, arr);
 	close(fd);
 	return (map);
 }
