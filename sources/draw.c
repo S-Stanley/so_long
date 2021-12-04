@@ -64,17 +64,18 @@ void	draw_square(t_window win, int start_x, int start_y, int color)
 // 	}
 // }
 
-void	draw_map(t_window window)
+t_img	*draw_map(t_window window)
 {
 	unsigned int	line_nbr;
 
 	line_nbr = 1;
 	while (window.map)
 	{
-		draw_line(window, window.map->line, line_nbr);
+		window.img = draw_line(window, window.map->line, line_nbr);
 		window.map = window.map->next;
 		line_nbr++;
 	}
+	return (window.img);
 }
 
 char	*get_image_path(char code)
@@ -90,7 +91,7 @@ char	*get_image_path(char code)
 	return ("textures/42/wall.xpm");
 }
 
-void	draw_line(t_window win, char **line, unsigned int line_nbr)
+t_img	*draw_line(t_window win, char **line, unsigned int line_nbr)
 {
 	int				x;
 	int				y;
@@ -101,8 +102,9 @@ void	draw_line(t_window win, char **line, unsigned int line_nbr)
 	while (line[i])
 	{
 		y = 0 + (win.max_sq_y * (line_nbr - 1));
-		put_img(win, get_image_path(line[i][0]), x, y);
+		win.img = put_img(win, get_image_path(line[i][0]), x, y);
 		i++;
 		x = x + win.max_sq_x;
 	}
+	return (win.img);
 }

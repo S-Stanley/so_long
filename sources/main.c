@@ -21,7 +21,8 @@ int	main(void)
 
 	map = setup_map();
 	window = setup_window(map);
-	draw_map(window);
+	window.img = draw_map(window);
+	print_lst(window.map);
 	get_player_position(map);
 	mlx_hook(window.win, 2, 1L << 0, on_key_press, &window);
 	mlx_loop(window.mlx);

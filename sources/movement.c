@@ -55,7 +55,7 @@ t_window	move_top(t_map	*map, t_player player, t_window win)
 	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("0");
 	win.map = tmp;
-	draw_map(win);
+	win.img = draw_map(win);
 	win.nb_move = print_move(win.nb_move);
 	return (win);
 }
@@ -89,7 +89,7 @@ t_window	move_bottom(t_map *map, t_player player, t_window win)
 	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("P");
 	win.map = tmp;
-	draw_map(win);
+	win.img = draw_map(win);
 	win.nb_move = print_move(win.nb_move);
 	return (win);
 }
@@ -108,7 +108,7 @@ t_window	move_left(t_map *map, t_player player, t_window win)
 	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("0");
 	win.map = tmp;
-	draw_map(win);
+	win.img = draw_map(win);
 	win.nb_move = print_move(win.nb_move);
 	return (win);
 }
@@ -127,7 +127,7 @@ t_window	move_right(t_map *map, t_player player, t_window win)
 	free(map->line[player.pos_x]);
 	map->line[player.pos_x] = ft_strdup("0");
 	win.map = tmp;
-	draw_map(win);
+	win.img = draw_map(win);
 	win.nb_move = print_move(win.nb_move);
 	return (win);
 }

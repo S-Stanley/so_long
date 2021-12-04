@@ -72,8 +72,10 @@ void	free_lst(t_map *map)
 	t_map	*tmp;
 
 	tmp = map;
+	printf("deleting map\n");
 	while (map)
 	{
+		printf("deleting line\n");
 		tmp = map->next;
 		free_that_matrice(map->line);
 		free(map);

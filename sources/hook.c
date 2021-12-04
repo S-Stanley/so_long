@@ -4,8 +4,9 @@ void	exit_game(t_window window)
 {
 	free_images(window.img, window);
 	free_lst(window.map);
-	mlx_destroy_window(window.mlx, window.win);
 	mlx_destroy_display(window.mlx);
+	mlx_destroy_window(window.mlx, window.win);
+	printf("all deleted\n");
 	exit(0);
 }
 
