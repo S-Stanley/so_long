@@ -31,12 +31,6 @@ char	*create_str_from_char(char c)
 	return (to_return);
 }
 
-typedef struct s_parsing {
-	t_map			*map;
-	char			**arr;
-	unsigned int	i;
-}	t_parsing;
-
 t_parsing	new_line_parsing(t_parsing parsing)
 {
 	parsing.map = lst_push_back(parsing.arr, parsing.map);

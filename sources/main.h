@@ -58,6 +58,12 @@ typedef struct s_data {
 	int		endian;
 }		t_data;
 
+typedef struct s_parsing {
+	t_map			*map;
+	char			**arr;
+	unsigned int	i;
+}	t_parsing;
+
 unsigned int	ft_strlen(const char *str);
 t_map			*lst_push_back(char **line, t_map *map);
 t_map			*new_lst(char **line);
