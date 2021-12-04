@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   move.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sserbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/04 20:34:01 by sserbin           #+#    #+#             */
-/*   Updated: 2021/12/04 20:34:03 by sserbin          ###   ########.fr       */
+/*   Created: 2021/12/04 20:38:39 by sserbin           #+#    #+#             */
+/*   Updated: 2021/12/04 20:38:40 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-t_player	get_player_position(t_map *map)
+unsigned int	can_he_move_here(char pos, t_window win)
 {
-	unsigned int	i;
-	t_player		player;
+	should_exit(pos, win);
+	if (pos == '0' || pos == 'C')
+		return (1);
+	return (0);
+}
 
-	player.pos_x = 0;
-	player.pos_y = 0;
-	while (map)
-	{
-		i = 0;
-		player.pos_x = 0;
-		while (map->line[i])
-		{
-			if (map->line[i][0] == 'P')
-				return (player);
-			player.pos_x++;
-			i++;
-		}
-		player.pos_y++;
-		map = map->next;
-	}
-	return (player);
+unsigned int	print_move(unsigned int nb_move)
+{
+	nb_move++;
+	printf("Move number: %d\n", nb_move);
+	return (nb_move);
 }

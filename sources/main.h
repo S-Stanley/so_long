@@ -87,5 +87,8 @@ void			exit_game(t_window window);
 void			free_images(t_img *img, t_window win);
 char			**push_arr(char **arr, char *to_add);
 t_map			*setup_map(const char *file);
+unsigned int	can_he_move_here(char pos, t_window win);
+unsigned int	print_move(unsigned int nb_move);
+void			should_exit(char pos, t_window win);
 
 #endif

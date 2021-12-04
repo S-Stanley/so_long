@@ -1,37 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   player.c                                           :+:      :+:    :+:   */
+/*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sserbin <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/04 20:34:01 by sserbin           #+#    #+#             */
-/*   Updated: 2021/12/04 20:34:03 by sserbin          ###   ########.fr       */
+/*   Created: 2021/12/04 20:38:44 by sserbin           #+#    #+#             */
+/*   Updated: 2021/12/04 20:38:45 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "main.h"
 
-t_player	get_player_position(t_map *map)
+void	should_exit(char pos, t_window win)
 {
 	unsigned int	i;
-	t_player		player;
+	t_map			*tmp;
 
-	player.pos_x = 0;
-	player.pos_y = 0;
-	while (map)
+	tmp = win.map;
+	if (pos != 'E')
+		return ;
+	while (win.map)
 	{
 		i = 0;
-		player.pos_x = 0;
-		while (map->line[i])
+		while (win.map->line[i])
 		{
-			if (map->line[i][0] == 'P')
-				return (player);
-			player.pos_x++;
+			if (win.map->line[i][0] == 'C')
+				return ;
 			i++;
 		}
-		player.pos_y++;
-		map = map->next;
+		win.map = win.map->next;
 	}
-	return (player);
+	win.map = tmp;
+	exit_game(win);
 }

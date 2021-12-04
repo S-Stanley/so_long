@@ -52,7 +52,8 @@ t_img	*put_img(t_window win, char *path, int width, int height)
 	image = malloc(sizeof(t_img));
 	if (!image)
 		return (win.img);
-	image->img = mlx_xpm_file_to_image(win.mlx, path, &image->width, &image->height);
+	image->img = mlx_xpm_file_to_image(
+			win.mlx, path, &image->width, &image->height);
 	if (!image->img)
 	{
 		str = "Failed to get xpm image\n";

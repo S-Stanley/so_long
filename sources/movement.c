@@ -1,42 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   movement.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sserbin <marvin@42.fr>                     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/04 20:33:47 by sserbin           #+#    #+#             */
+/*   Updated: 2021/12/04 20:33:48 by sserbin          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "main.h"
-
-void	should_exit(char pos, t_window win)
-{
-	unsigned int	i;
-	t_map			*tmp;
-
-	tmp = win.map;
-	if (pos != 'E')
-		return ;
-	while (win.map)
-	{
-		i = 0;
-		while (win.map->line[i])
-		{
-			if (win.map->line[i][0] == 'C')
-				return ;
-			i++;
-		}
-		win.map = win.map->next;
-	}
-	win.map = tmp;
-	exit_game(win);
-}
-
-unsigned int	can_he_move_here(char pos, t_window win)
-{
-	should_exit(pos, win);
-	if (pos == '0' || pos == 'C')
-		return (1);
-	return (0);
-}
-
-unsigned int	print_move(unsigned int	nb_move)
-{
-	nb_move++;
-	printf("Move number: %d\n", nb_move);
-	return (nb_move);
-}
 
 t_window	move_top(t_map	*map, t_player player, t_window win)
 {
@@ -62,7 +36,6 @@ t_window	move_top(t_map	*map, t_player player, t_window win)
 	win.nb_move = print_move(win.nb_move);
 	return (win);
 }
-
 
 unsigned int	can_he_move_bottom(t_map *map, t_player player, t_window win)
 {

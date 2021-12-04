@@ -55,10 +55,9 @@ void	print_matrice(char **matrice)
 	write(1, "\n", 1);
 }
 
-
-char    **push_arr(char **arr, char *to_add)
+char	**push_arr(char **arr, char *to_add)
 {
-    unsigned int	i;
+	unsigned int	i;
 	char			**to_return;
 
 	to_return = malloc(sizeof(char *) * (count_len_matrice(arr) + 2));

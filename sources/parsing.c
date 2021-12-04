@@ -71,7 +71,7 @@ t_map	*setup_map(const char *file)
 				arr = push_arr(arr, create_str_from_char(buffer[i]));
 				i++;
 			}
-		} 
+		}
 		free(buffer);
 	}
 	map = lst_push_back(arr, map);
