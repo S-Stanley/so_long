@@ -32,15 +32,24 @@ char	*create_str_from_char(char c)
 }
 
 typedef struct s_parsing {
-	t_map	*map;
-	char	**arr;
+	t_map			*map;
+	char			**arr;
+	unsigned int	i;
 }	t_parsing;
 
-t_map	*get_map_from_file(int fd, t_map *map, int reading, char **arr)
+t_parsing	new_line_parsing(t_parsing parsing)
+{
+	parsing.map = lst_push_back(parsing.arr, parsing.map);
+	free_that_matrice(parsing.arr);
+	parsing.arr = NULL;
+	parsing.i++;
+	return (parsing);
+}
+
+t_map	*get_map_from_file(int fd, t_parsing parsing, int reading)
 {
 	char			*buffer;
 	int				buffer_size;
-	unsigned int	i;
 
 	buffer_size = 5;
 	while (reading > 0)
@@ -50,40 +59,36 @@ t_map	*get_map_from_file(int fd, t_map *map, int reading, char **arr)
 			print_and_exit("Error while allocating buffer\n");
 		reading = read(fd, buffer, buffer_size);
 		buffer[reading] = 0;
-		i = 0;
-		while (buffer[i])
+		parsing.i = 0;
+		while (buffer[parsing.i])
 		{
-			if (buffer[i] == '\n')
-			{
-				map = lst_push_back(arr, map);
-				free_that_matrice(arr);
-				arr = NULL;
-				i++;
-			}
+			if (buffer[parsing.i] == '\n')
+				parsing = new_line_parsing(parsing);
 			else
-				arr = push_arr(arr, create_str_from_char(buffer[i++]));
+				parsing.arr = push_arr(
+						parsing.arr, create_str_from_char(buffer[parsing.i++]));
 		}
 		free(buffer);
 	}
-	map = lst_push_back(arr, map);
-	free_that_matrice(arr);
-	return (map);
+	parsing.map = lst_push_back(parsing.arr, parsing. map);
+	free_that_matrice(parsing.arr);
+	return (parsing.map);
 }
 
 t_map	*setup_map(const char *file)
 {
 	int				fd;
 	int				reading;
-	t_map			*map;
-	char			**arr;
+	t_parsing		parsing;
 
 	fd = open(file, O_RDONLY);
 	if (!fd)
 		print_and_exit("Cannot open file\n");
 	reading = 2;
-	map = NULL;
-	arr = NULL;
-	map = get_map_from_file(fd, map, reading, arr);
+	parsing.map = NULL;
+	parsing.arr = NULL;
+	parsing.i = 0;
+	parsing.map = get_map_from_file(fd, parsing, reading);
 	close(fd);
-	return (map);
+	return (parsing.map);
 }
