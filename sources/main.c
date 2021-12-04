@@ -14,22 +14,67 @@
 #include "../minilibx-linux/mlx.h"
 #include <string.h>
 
-int	main(void)
+char	*create_str_from_char(char c)
 {
-	t_map			*map;
-	t_window		window;
+	char	*to_return;
 
-	map = setup_map();
-	window = setup_window(map);
-	window.img = draw_map(window);
-	get_player_position(map);
-	mlx_hook(window.win, 2, 1L << 0, on_key_press, &window);
-	mlx_loop(window.mlx);
-	return (0);
+	to_return = malloc(sizeof(char *) * 2);
+	if (!to_return)
+		return (NULL);
+	to_return[0] = c;
+	to_return[1] = 0;
+	return (to_return);
 }
 
-/*
-	put_img(mlx, window, "textures/img.xpm", 5, 5);
-	put_pixel_via_img(mlx, window, 0, 0, 0x00D8FF);
-	put_pixel(mlx, window, 5, 5, 0x00D8FF);
-*/
+void	get_file_data(const char *file)
+{
+	int				fd;
+	char			*buffer;
+	int				buffer_size;
+	int				reading;
+	unsigned int	i;
+	char			**arr;
+
+	buffer_size = 5;
+	i = 0;
+	fd = open(file, O_RDONLY);
+	if (!fd)
+	{
+		printf("Error\n Cannot open file\n");
+		exit (0);
+	}
+	reading = 2;
+	arr = NULL;
+	while (reading != 0)
+	{
+		buffer = malloc(sizeof(char *) * (buffer_size + 1));
+		reading = read(fd, buffer, buffer_size);
+		buffer[buffer_size + 1] = 0;
+		i = 0;
+		while (buffer[i])
+		{
+			arr = push_arr(arr, create_str_from_char(buffer[i]));
+			i++;
+		}
+		free(buffer);
+	}
+	print_matrice(arr);
+	free_that_matrice(arr);
+	close(fd);
+}
+
+int	main(int argc, char **argv)
+{
+	// t_map			*map;
+	// t_window		window;
+
+	(void)argc;
+	get_file_data(argv[1]);
+	// map = setup_map();
+	// window = setup_window(map);
+	// window.img = draw_map(window);
+	// get_player_position(map);
+	// mlx_hook(window.win, 2, 1L << 0, on_key_press, &window);
+	// mlx_loop(window.mlx);
+	return (0);
+}

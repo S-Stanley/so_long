@@ -16,6 +16,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdio.h>
+# include <fcntl.h>
 # include "../minilibx-linux/mlx.h"
 # include "string.h"
 
@@ -85,5 +86,6 @@ t_window		move_left(t_map *map, t_player player, t_window win);
 t_window		move_right(t_map *map, t_player player, t_window win);
 void			exit_game(t_window window);
 void			free_images(t_img *img, t_window win);
+char			**push_arr(char **arr, char *to_add);
 
 #endif

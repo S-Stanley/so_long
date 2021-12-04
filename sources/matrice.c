@@ -55,11 +55,35 @@ void	print_matrice(char **matrice)
 	write(1, "\n", 1);
 }
 
+
+char    **push_arr(char **arr, char *to_add)
+{
+    unsigned int	i;
+	char			**to_return;
+
+	to_return = malloc(sizeof(char *) * (count_len_matrice(arr) + 2));
+	i = 0;
+	if (arr)
+	{
+		while (arr[i])
+		{
+			to_return[i] = arr[i];
+			i++;
+		}
+	}
+	to_return[i] = to_add;
+	to_return[++i] = 0;
+	free_that_matrice(arr);
+	return (to_return);
+}
+
 void	free_that_matrice(char **matrice)
 {
 	unsigned int	i;
 
 	i = 0;
+	if (!matrice)
+		return ;
 	while (matrice[i])
 	{
 		free(matrice[i]);
