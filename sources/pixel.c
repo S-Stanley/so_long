@@ -37,7 +37,6 @@ void	free_images(t_img *img, t_window win)
 	(void)win;
 	while (img)
 	{
-		printf("destroying img\n");
 		tmp = img->next;
 		mlx_destroy_image(win.mlx, img->img);
 		free(img);

@@ -6,7 +6,7 @@ void	exit_game(t_window window)
 	free_lst(window.map);
 	mlx_destroy_display(window.mlx);
 	mlx_destroy_window(window.mlx, window.win);
-	printf("all deleted\n");
+	free(window.mlx);
 	exit(0);
 }
 
