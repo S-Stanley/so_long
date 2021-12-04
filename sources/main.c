@@ -45,14 +45,21 @@ void	get_file_data(const char *file)
 	}
 	reading = 2;
 	arr = NULL;
-	while (reading != 0)
+	while (reading > 0)
 	{
 		buffer = malloc(sizeof(char *) * (buffer_size + 1));
+		if (!buffer)
+		{
+			printf("Error while allocating buffer\n");
+			exit(0);
+		}
 		reading = read(fd, buffer, buffer_size);
-		buffer[buffer_size + 1] = 0;
+		buffer[reading] = 0;
 		i = 0;
 		while (buffer[i])
 		{
+			if (buffer[i] == '\n')
+				i++;
 			arr = push_arr(arr, create_str_from_char(buffer[i]));
 			i++;
 		}

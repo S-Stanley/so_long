@@ -73,7 +73,7 @@ char    **push_arr(char **arr, char *to_add)
 	}
 	to_return[i] = to_add;
 	to_return[++i] = 0;
-	free_that_matrice(arr);
+	free(arr);
 	return (to_return);
 }
 
