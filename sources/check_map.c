@@ -31,9 +31,33 @@ void	is_map_rectangular(t_map *map)
 	}
 }
 
-void	check_playable(t_map *map)
+unsigned int	check_playable(t_map *map)
 {
-	(void)map;
+	unsigned int	count_collectible;
+	unsigned int	count_exit;
+	unsigned int	count_start_pos;
+	int				i;
+
+	count_collectible = 0;
+	count_exit = 0;
+	count_start_pos = 0;
+	while (map)
+	{
+		i = -1;
+		while (map->line[++i])
+		{
+			if (map->line[i][0] == 'E')
+				count_exit++;
+			if (map->line[i][0] == 'C')
+				count_collectible++;
+			if (map->line[i][0] == 'P')
+				count_start_pos++;
+		}
+		map = map->next;
+	}
+	if (!count_collectible || !count_exit || !count_start_pos)
+		return (0);
+	return (1);
 }
 
 void	is_map_closed(t_map *map)
@@ -44,6 +68,10 @@ void	is_map_closed(t_map *map)
 void	check_map(t_map *map)
 {
 	is_map_closed(map);
-	check_playable(map);
+	if (!check_playable(map))
+	{
+		free_lst(map);
+		print_and_exit("Missing one, collectible, exit or start pos");
+	}
 	is_map_rectangular(map);
 }
