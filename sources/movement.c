@@ -3,7 +3,9 @@
 void	should_exit(char pos, t_window win)
 {
 	unsigned int	i;
+	t_map			*tmp;
 
+	tmp = win.map;
 	if (pos != 'E')
 		return ;
 	while (win.map)
@@ -17,6 +19,7 @@ void	should_exit(char pos, t_window win)
 		}
 		win.map = win.map->next;
 	}
+	win.map = tmp;
 	exit_game(win);
 }
 
