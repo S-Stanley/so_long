@@ -34,6 +34,7 @@ void	get_file_data(const char *file)
 	int				reading;
 	unsigned int	i;
 	char			**arr;
+	t_map			*map;
 
 	buffer_size = 5;
 	i = 0;
@@ -45,6 +46,7 @@ void	get_file_data(const char *file)
 	}
 	reading = 2;
 	arr = NULL;
+	map = NULL;
 	while (reading > 0)
 	{
 		buffer = malloc(sizeof(char *) * (buffer_size + 1));
@@ -59,14 +61,25 @@ void	get_file_data(const char *file)
 		while (buffer[i])
 		{
 			if (buffer[i] == '\n')
+			{
+				map = lst_push_back(arr, map);
+				free_that_matrice(arr);
+				arr = NULL;
 				i++;
-			arr = push_arr(arr, create_str_from_char(buffer[i]));
-			i++;
-		}
+			}
+			else
+			{
+				arr = push_arr(arr, create_str_from_char(buffer[i]));
+				i++;
+			}
+		} 
 		free(buffer);
 	}
-	print_matrice(arr);
+	// print_matrice(arr);
+	map = lst_push_back(arr, map);
 	free_that_matrice(arr);
+	print_lst(map);
+	free_lst(map);
 	close(fd);
 }
 
