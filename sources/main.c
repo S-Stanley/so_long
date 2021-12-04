@@ -21,6 +21,7 @@ int	main(int argc, char **argv)
 
 	(void)argc;
 	map = setup_map(argv[1]);
+	check_map(map);
 	window = setup_window(map);
 	window.img = draw_map(window);
 	get_player_position(map);

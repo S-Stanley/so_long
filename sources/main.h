@@ -96,5 +96,7 @@ t_map			*setup_map(const char *file);
 unsigned int	can_he_move_here(char pos, t_window win);
 unsigned int	print_move(unsigned int nb_move);
 void			should_exit(char pos, t_window win);
+void			check_map(t_map *map);
+void			print_and_exit(char *message);
 
 #endif
