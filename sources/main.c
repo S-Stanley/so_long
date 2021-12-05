@@ -14,6 +14,24 @@
 #include "../minilibx-linux/mlx.h"
 #include <string.h>
 
+void	is_map_ber(const char *str, const char *ext)
+{
+	unsigned int	i;
+	unsigned int	x;
+
+	i = 0;
+	x = 0;
+	while (str[i] && str[i] != '.')
+		i++;
+	while (str[i] || ext[x])
+	{
+		if (str[i] != ext[x])
+			print_and_exit("This is not .ber map\n");
+		i++;
+		x++;
+	}
+}
+
 int	main(int argc, char **argv)
 {
 	t_map			*map;
@@ -21,6 +39,7 @@ int	main(int argc, char **argv)
 
 	if (argc != 2)
 		print_and_exit("Please give one map in arg");
+	is_map_ber(argv[1], ".ber");
 	map = setup_map(argv[1]);
 	check_map(map);
 	window = setup_window(map);
