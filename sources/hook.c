@@ -12,6 +12,13 @@
 
 #include "main.h"
 
+void	print_and_exit(char *message)
+{
+	printf("Error\n");
+	printf("%s", message);
+	exit(0);
+}
+
 void	exit_game(t_window window)
 {
 	free_images(window.img_start, window);

@@ -12,25 +12,6 @@
 
 #include "main.h"
 
-void	print_and_exit(char *message)
-{
-	printf("Error\n");
-	printf("%s", message);
-	exit(0);
-}
-
-char	*create_str_from_char(char c)
-{
-	char	*to_return;
-
-	to_return = malloc(sizeof(char *) * 2);
-	if (!to_return)
-		return (NULL);
-	to_return[0] = c;
-	to_return[1] = 0;
-	return (to_return);
-}
-
 t_parsing	new_line_parsing(t_parsing parsing)
 {
 	parsing.map = lst_push_back(parsing.arr, parsing.map);
@@ -55,6 +36,15 @@ unsigned int	is_white_space(char c)
 	return (0);
 }
 
+t_parsing	push_arr_loop(t_parsing parsing, char *buffer)
+{
+	while (is_white_space(buffer[parsing.i]))
+		parsing.i++;
+	parsing.arr = push_arr(
+			parsing.arr, create_str_from_char(buffer[parsing.i++]));
+	return (parsing);
+}
+
 t_map	*get_map_from_file(int fd, t_parsing parsing, int reading)
 {
 	char			*buffer;
@@ -74,12 +64,7 @@ t_map	*get_map_from_file(int fd, t_parsing parsing, int reading)
 			if (buffer[parsing.i] == '\n')
 				parsing = new_line_parsing(parsing);
 			else
-			{
-				while (is_white_space(buffer[parsing.i]))
-					parsing.i++;
-				parsing.arr = push_arr(
-						parsing.arr, create_str_from_char(buffer[parsing.i++]));
-			}
+				parsing = push_arr_loop(parsing, buffer);
 		}
 		free(buffer);
 	}

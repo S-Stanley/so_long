@@ -75,7 +75,7 @@ unsigned int	is_map_closed(t_map *map)
 	{
 		if (map->line[0][0] != '1')
 			return (0);
-		if (map->line[count_len_matrice(map->line) -1][0] != '1')
+		if (map->line[count_len_matrice(map->line) - 1][0] != '1')
 			return (0);
 		map = map->next;
 	}

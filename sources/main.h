@@ -102,5 +102,7 @@ void			check_map(t_map *map);
 void			print_and_exit(char *message);
 int				on_buton_press(t_window *window);
 char			*get_image_path(char code);
+char			*create_str_from_char(char c);
+void			put_str(char *str);
 
 #endif

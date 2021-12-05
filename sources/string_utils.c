@@ -21,3 +21,38 @@ unsigned int	ft_strlen(const char *str)
 		i++;
 	return (i);
 }
+
+void	put_str(char *str)
+{
+	write(1, str, ft_strlen(str));
+}
+
+char	*create_str_from_char(char c)
+{
+	char	*to_return;
+
+	to_return = malloc(sizeof(char *) * 2);
+	if (!to_return)
+		return (NULL);
+	to_return[0] = c;
+	to_return[1] = 0;
+	return (to_return);
+}
+
+char	*ft_strdup(const char *str)
+{
+	char			*to_return;
+	unsigned int	i;
+
+	to_return = malloc(sizeof(char) * (ft_strlen(str) + 1));
+	if (!to_return)
+		return (NULL);
+	i = 0;
+	while (str[i])
+	{
+		to_return[i] = str[i];
+		i++;
+	}
+	to_return[i] = 0;
+	return (to_return);
+}

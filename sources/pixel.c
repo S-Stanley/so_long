@@ -19,7 +19,7 @@ t_img	*image_push_back(t_img *new_image, t_img *img)
 	if (!new_image)
 		return (img);
 	if (!img)
-		return (new_image);		
+		return (new_image);
 	tmp = img;
 	while (img->next)
 		img = img->next;
@@ -41,11 +41,6 @@ void	free_images(t_img *img, t_window win)
 		free(img);
 		img = tmp;
 	}
-}
-
-void	put_str(char *str)
-{
-	write(1, str, ft_strlen(str));
 }
 
 t_img	*put_img(t_window *window, char *path, int width, int height)
