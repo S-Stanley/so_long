@@ -86,21 +86,21 @@ unsigned int	is_map_closed(t_map *map)
 			return (0);
 		i++;
 	}
-	// (void)map;
 	return (1);
 }
 
 void	check_map(t_map *map)
 {
+	print_lst(map);
 	if (!is_map_closed(map))
 	{
 		free_lst(map);
-		print_and_exit("Missing one, collectible, exit or start pos");
+		print_and_exit("Map is not closed\n");
 	}
 	if (!check_playable(map))
 	{
 		free_lst(map);
-		print_and_exit("Missing one, collectible, exit or start pos");
+		print_and_exit("Missing one, collectible, exit or start pos\n");
 	}
 	is_map_rectangular(map);
 }

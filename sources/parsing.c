@@ -40,6 +40,21 @@ t_parsing	new_line_parsing(t_parsing parsing)
 	return (parsing);
 }
 
+unsigned int	is_white_space(char c)
+{
+	if (c == ' ')
+		return (1);
+	if (c == '\t')
+		return (1);
+	if (c == '\v')
+		return (1);
+	if (c == '\f')
+		return (1);
+	if (c == '\r')
+		return (1);
+	return (0);
+}
+
 t_map	*get_map_from_file(int fd, t_parsing parsing, int reading)
 {
 	char			*buffer;
@@ -59,8 +74,12 @@ t_map	*get_map_from_file(int fd, t_parsing parsing, int reading)
 			if (buffer[parsing.i] == '\n')
 				parsing = new_line_parsing(parsing);
 			else
+			{
+				while (is_white_space(buffer[parsing.i]))
+					parsing.i++;
 				parsing.arr = push_arr(
 						parsing.arr, create_str_from_char(buffer[parsing.i++]));
+			}
 		}
 		free(buffer);
 	}
