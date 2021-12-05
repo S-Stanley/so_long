@@ -44,10 +44,14 @@ void	free_images(t_img *img, t_window win)
 	}
 }
 
+void	put_str(char *str)
+{
+	write(1, str, ft_strlen(str));
+}
+
 t_img	*put_img(t_window win, char *path, int width, int height)
 {
 	t_img	*image;
-	char	*str;
 
 	image = malloc(sizeof(t_img));
 	if (!image)
@@ -56,9 +60,10 @@ t_img	*put_img(t_window win, char *path, int width, int height)
 			win.mlx, path, &image->width, &image->height);
 	if (!image->img)
 	{
-		str = "Failed to get xpm image\n";
-		write(1, str, ft_strlen(str));
-		exit(0);
+		mlx_destroy_image(win.mlx, image->img);
+		free(image);
+		put_str("Failed to get xpm image\n");
+		exit_game(win);
 	}
 	image->next = NULL;
 	mlx_put_image_to_window(win.mlx, win.win, image->img, width, height);

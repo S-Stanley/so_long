@@ -95,7 +95,7 @@ t_map	*setup_map(const char *file)
 	t_parsing		parsing;
 
 	fd = open(file, O_RDONLY);
-	if (!fd)
+	if (fd == -1)
 		print_and_exit("Cannot open file\n");
 	reading = 2;
 	parsing.map = NULL;

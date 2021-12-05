@@ -20,7 +20,7 @@ int	main(int argc, char **argv)
 	t_window		window;
 
 	if (argc != 2)
-		print_and_exit("Please insert a map");
+		print_and_exit("Please give one map in arg");
 	map = setup_map(argv[1]);
 	check_map(map);
 	window = setup_window(map);
