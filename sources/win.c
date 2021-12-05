@@ -37,5 +37,6 @@ t_window	setup_window(t_map *map)
 	win.nb_move = 0;
 	win.map = map;
 	win.img = NULL;
+	win.map_start = map;
 	return (win);
 }

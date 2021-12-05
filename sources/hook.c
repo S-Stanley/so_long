@@ -14,8 +14,8 @@
 
 void	exit_game(t_window window)
 {
-	free_images(window.img, window);
-	free_lst(window.map);
+	free_images(window.img_start, window);
+	free_lst(window.map_start);
 	mlx_destroy_window(window.mlx, window.win);
 	mlx_destroy_display(window.mlx);
 	free(window.mlx);

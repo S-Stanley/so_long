@@ -43,6 +43,8 @@ typedef struct s_window {
 	unsigned int	nb_move;
 	t_map			*map;
 	t_img			*img;
+	t_map			*map_start;
+	t_img			*img_start;
 }				t_window;
 
 typedef struct s_player {
@@ -83,7 +85,7 @@ t_img			*draw_map(t_window window);
 int				on_key_press(int keycode, t_window *window);
 t_window		move_top(t_map	*map, t_player player, t_window win);
 t_player		get_player_position(t_map *map);
-t_img			*put_img(t_window win, char *path, int width, int height);
+t_img			*put_img(t_window *window, char *path, int width, int height);
 t_window		move_bottom(t_map	*map, t_player player, t_window win);
 void			free_lst(t_map *map);
 void			free_that_matrice(char **matrice);
@@ -99,5 +101,6 @@ void			should_exit(char pos, t_window win);
 void			check_map(t_map *map);
 void			print_and_exit(char *message);
 int				on_buton_press(t_window *window);
+char			*get_image_path(char code);
 
 #endif

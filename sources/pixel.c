@@ -19,7 +19,7 @@ t_img	*image_push_back(t_img *new_image, t_img *img)
 	if (!new_image)
 		return (img);
 	if (!img)
-		return (new_image);
+		return (new_image);		
 	tmp = img;
 	while (img->next)
 		img = img->next;
@@ -34,7 +34,6 @@ void	free_images(t_img *img, t_window win)
 	if (!img)
 		return ;
 	tmp = img;
-	(void)win;
 	while (img)
 	{
 		tmp = img->next;
@@ -49,10 +48,13 @@ void	put_str(char *str)
 	write(1, str, ft_strlen(str));
 }
 
-t_img	*put_img(t_window win, char *path, int width, int height)
+t_img	*put_img(t_window *window, char *path, int width, int height)
 {
-	t_img	*image;
+	t_img		*image;
+	t_window	win;
+	t_img		*to_return;
 
+	win = *(window);
 	image = malloc(sizeof(t_img));
 	if (!image)
 		return (win.img);
@@ -61,18 +63,15 @@ t_img	*put_img(t_window win, char *path, int width, int height)
 	if (!image->img)
 	{
 		put_str("Failed to get xpm image\n");
-		print_matrice(win.map->line);
 		free(image);
-		free_images(win.img, win);
-		free_lst(win.map);
-		mlx_destroy_window(win.mlx, win.win);
-		mlx_destroy_display(win.mlx);
-		free(win.mlx);
-		exit(1);
+		exit_game(*(window));
 	}
 	image->next = NULL;
 	mlx_put_image_to_window(win.mlx, win.win, image->img, width, height);
-	win.img = image_push_back(image, win.img);
+	to_return = image_push_back(image, win.img);
+	if (!win.img)
+		window->img_start = to_return;
+	win.img = to_return;
 	return (win.img);
 }
 

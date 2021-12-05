@@ -89,6 +89,26 @@ unsigned int	is_map_closed(t_map *map)
 	return (1);
 }
 
+unsigned int	check_textures(char *to_check)
+{
+	unsigned int	i;
+	int				fd;
+
+	i = 0;
+	while (to_check[i])
+	{
+		fd = open(get_image_path('P'), O_RDONLY);
+		if (fd == -1)
+		{
+			close(fd);
+			return (0);
+		}
+		close (fd);
+		i++;
+	}
+	return (1);
+}
+
 void	check_map(t_map *map)
 {
 	print_lst(map);
@@ -103,4 +123,9 @@ void	check_map(t_map *map)
 		print_and_exit("Missing one, collectible, exit or start pos\n");
 	}
 	is_map_rectangular(map);
+	if (!check_textures("PCE10"))
+	{
+		free_lst(map);
+		print_and_exit("Cannot get at leat one of the texture\n");
+	}
 }
