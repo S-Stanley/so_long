@@ -60,10 +60,15 @@ t_img	*put_img(t_window win, char *path, int width, int height)
 			win.mlx, path, &image->width, &image->height);
 	if (!image->img)
 	{
-		mlx_destroy_image(win.mlx, image->img);
-		free(image);
 		put_str("Failed to get xpm image\n");
-		exit_game(win);
+		print_matrice(win.map->line);
+		free(image);
+		free_images(win.img, win);
+		free_lst(win.map);
+		mlx_destroy_window(win.mlx, win.win);
+		mlx_destroy_display(win.mlx);
+		free(win.mlx);
+		exit(1);
 	}
 	image->next = NULL;
 	mlx_put_image_to_window(win.mlx, win.win, image->img, width, height);
