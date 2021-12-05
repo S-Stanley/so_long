@@ -60,29 +60,34 @@ unsigned int	check_playable(t_map *map)
 	return (1);
 }
 
-void	is_map_closed(t_map *map)
+unsigned int	is_map_closed(t_map *map)
 {
-	unsigned int	i;
+	// unsigned int	i;
 
-	i = 0;
-	while (map->line[i])
-	{
-		if (map->line[i][0] != '1')
-			return (0);
-		i++;
-	}
-	while (map->next)
-	{
-		map = map->next;
-	}
-	i = 0;
-	while (map->line[i])
-	{
-		if (map->line[i][0] != '1')
-			return (0);
-		i++;
-	}
-	return (1);
+	// i = 0;
+	// while (map->line[i])
+	// {
+	// 	if (map->line[i][0] != '1')
+	// 		return (0);
+	// 	i++;
+	// }
+	// while (map->next)
+	// {
+	// 	if (map->line[0][0] != '1')
+	// 		return (0);
+	// 	if (map->line[count_len_matrice(map->line) -1][0] != '1')
+	// 		return (0);
+	// 	map = map->next;
+	// }
+	// i = 0;
+	// while (map->line[i])
+	// {
+	// 	if (map->line[i][0] != '1')
+	// 		return (0);
+	// 	i++;
+	// }
+	(void)map;
+	return (0);
 }
 
 void	check_map(t_map *map)
