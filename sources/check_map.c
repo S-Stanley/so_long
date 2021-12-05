@@ -62,37 +62,41 @@ unsigned int	check_playable(t_map *map)
 
 unsigned int	is_map_closed(t_map *map)
 {
-	// unsigned int	i;
+	unsigned int	i;
 
-	// i = 0;
-	// while (map->line[i])
-	// {
-	// 	if (map->line[i][0] != '1')
-	// 		return (0);
-	// 	i++;
-	// }
-	// while (map->next)
-	// {
-	// 	if (map->line[0][0] != '1')
-	// 		return (0);
-	// 	if (map->line[count_len_matrice(map->line) -1][0] != '1')
-	// 		return (0);
-	// 	map = map->next;
-	// }
-	// i = 0;
-	// while (map->line[i])
-	// {
-	// 	if (map->line[i][0] != '1')
-	// 		return (0);
-	// 	i++;
-	// }
-	(void)map;
-	return (0);
+	i = 0;
+	while (map->line[i])
+	{
+		if (map->line[i][0] != '1')
+			return (0);
+		i++;
+	}
+	while (map->next)
+	{
+		if (map->line[0][0] != '1')
+			return (0);
+		if (map->line[count_len_matrice(map->line) -1][0] != '1')
+			return (0);
+		map = map->next;
+	}
+	i = 0;
+	while (map->line[i])
+	{
+		if (map->line[i][0] != '1')
+			return (0);
+		i++;
+	}
+	// (void)map;
+	return (1);
 }
 
 void	check_map(t_map *map)
 {
-	is_map_closed(map);
+	if (!is_map_closed(map))
+	{
+		free_lst(map);
+		print_and_exit("Missing one, collectible, exit or start pos");
+	}
 	if (!check_playable(map))
 	{
 		free_lst(map);
