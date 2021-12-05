@@ -98,5 +98,6 @@ unsigned int	print_move(unsigned int nb_move);
 void			should_exit(char pos, t_window win);
 void			check_map(t_map *map);
 void			print_and_exit(char *message);
+int				on_buton_press(t_window *window);
 
 #endif

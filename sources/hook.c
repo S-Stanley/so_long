@@ -19,15 +19,19 @@ void	exit_game(t_window window)
 	mlx_destroy_window(window.mlx, window.win);
 	mlx_destroy_display(window.mlx);
 	free(window.mlx);
-	(void)window;
 	exit(0);
+}
+
+int	on_buton_press(t_window *window)
+{
+	exit_game(*(window));
+	return (0);
 }
 
 int	on_key_press(int keycode, t_window *window)
 {
 	t_player	player;
 
-	printf("%d\n", keycode);
 	player = get_player_position(window->map);
 	if (keycode == 65307)
 		exit_game(*(window));

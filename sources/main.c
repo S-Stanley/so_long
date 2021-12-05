@@ -27,6 +27,7 @@ int	main(int argc, char **argv)
 	window.img = draw_map(window);
 	get_player_position(map);
 	mlx_hook(window.win, 2, 1L << 0, on_key_press, &window);
+	mlx_hook(window.win, 33, 1L << 5, on_buton_press, &window);
 	mlx_loop(window.mlx);
 	return (0);
 }
