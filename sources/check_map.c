@@ -111,7 +111,6 @@ unsigned int	check_textures(char *to_check)
 
 void	check_map(t_map *map)
 {
-	print_lst(map);
 	if (!is_map_closed(map))
 	{
 		free_lst(map);

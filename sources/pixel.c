@@ -52,7 +52,7 @@ t_img	*put_img(t_window *window, char *path, int width, int height)
 	win = *(window);
 	image = malloc(sizeof(t_img));
 	if (!image)
-		return (win.img);
+		print_and_exit_game("Error malloc put_img\n", *(window));
 	image->img = mlx_xpm_file_to_image(
 			win.mlx, path, &image->width, &image->height);
 	if (!image->img)

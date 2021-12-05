@@ -12,6 +12,12 @@
 
 #include "main.h"
 
+void	print_and_exit_game(char *str, t_window win)
+{
+	put_str(str);
+	exit_game(win);
+}
+
 void	should_exit(char pos, t_window win)
 {
 	unsigned int	i;
