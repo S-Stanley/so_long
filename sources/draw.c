@@ -50,14 +50,14 @@ t_img	*draw_map(t_window window)
 char	*get_image_path(char code)
 {
 	if (code == 'P')
-		return ("textures/42/dauphin.xpm");
+		return ("textures/dauphin.xpm");
 	if (code == 'C')
-		return ("textures/2x42/coin.xpm");
+		return ("textures/coin.xpm");
 	if (code == 'E')
-		return ("textures/42/door.xpm");
+		return ("textures/door.xpm");
 	if (code == '0')
-		return ("textures/42/grass.xpm");
-	return ("textures/42/wall.xpm");
+		return ("textures/grass.xpm");
+	return ("textures/wall.xpm");
 }
 
 t_img	*draw_line(t_window win, char **line, unsigned int line_nbr)
