@@ -12,6 +12,27 @@
 
 #include "main.h"
 
+unsigned int	check_map_case(t_map *map)
+{
+	unsigned int	i;
+
+	while (map)
+	{
+		i = 0;
+		while (map->line[i])
+		{
+			if (map->line[i][0] != '0' && map->line[i][0] != '1' &&
+					map->line[i][0] != 'E' &&
+					map->line[i][0] != 'C' &&
+					map->line[i][0] != 'P')
+				return (0);
+			i++;
+		}
+		map = map->next;
+	}
+	return (1);
+}
+
 void	print_and_exit_game(char *str, t_window win)
 {
 	put_str(str);

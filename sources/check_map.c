@@ -127,4 +127,9 @@ void	check_map(t_map *map)
 		free_lst(map);
 		print_and_exit("Cannot get at leat one of the texture\n");
 	}
+	if (!check_map_case(map))
+	{
+		free_lst(map);
+		print_and_exit("The map is corrupt, one item should not be there\n");
+	}
 }

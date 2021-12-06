@@ -105,5 +105,6 @@ char			*get_image_path(char code);
 char			*create_str_from_char(char c);
 void			put_str(char *str);
 void			print_and_exit_game(char *str, t_window win);
+unsigned int	check_map_case(t_map *map);
 
 #endif
