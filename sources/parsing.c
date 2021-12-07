@@ -6,7 +6,7 @@
 /*   By: sserbin <sserbin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 01:29:23 by sserbin           #+#    #+#             */
-/*   Updated: 2021/12/08 00:38:42 by sserbin          ###   ########.fr       */
+/*   Updated: 2021/12/08 00:44:39 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,17 +55,28 @@ t_map	*get_map_from_file(int fd, t_parsing parsing, int reading)
 	{
 		buffer = malloc(sizeof(char *) * (buffer_size + 1));
 		if (!buffer)
+		{
+			free(buffer);
+			free_that_matrice(parsing.map);
 			print_and_exit("Error while allocating buffer\n");
+		}
 		reading = read(fd, buffer, buffer_size);
+		if (reading == 0)
+		{
+			free(buffer);
+			return (parsing.map);
+		}
 		buffer[reading] = 0;
 		parsing.i = 0;
 		while (buffer[parsing.i])
 		{
 			if (buffer[parsing.i] == '\n')
+			{
 				if (parsing.arr)
 					parsing = new_line_parsing(parsing);
 				else
 					parsing.i++;
+			}
 			else
 				parsing = push_arr_loop(parsing, buffer);
 		}
@@ -94,5 +105,7 @@ t_map	*setup_map(const char *file)
 	parsing.i = 0;
 	parsing.map = get_map_from_file(fd, parsing, reading);
 	close(fd);
+	if (!parsing.map)
+		exit(0);
 	return (parsing.map);
 }
