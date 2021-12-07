@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sserbin <stanleyserbin@gmail.com>          +#+  +:+       +#+        */
+/*   By: sserbin <sserbin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 01:29:23 by sserbin           #+#    #+#             */
-/*   Updated: 2021/11/30 01:29:24 by sserbin          ###   ########.fr       */
+/*   Updated: 2021/12/08 00:38:42 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,20 @@ t_map	*get_map_from_file(int fd, t_parsing parsing, int reading)
 		while (buffer[parsing.i])
 		{
 			if (buffer[parsing.i] == '\n')
-				parsing = new_line_parsing(parsing);
+				if (parsing.arr)
+					parsing = new_line_parsing(parsing);
+				else
+					parsing.i++;
 			else
 				parsing = push_arr_loop(parsing, buffer);
 		}
 		free(buffer);
 	}
-	parsing.map = lst_push_back(parsing.arr, parsing. map);
-	free_that_matrice(parsing.arr);
+	if (parsing.arr)
+	{
+		parsing.map = lst_push_back(parsing.arr, parsing. map);
+		free_that_matrice(parsing.arr);
+	}
 	return (parsing.map);
 }
 

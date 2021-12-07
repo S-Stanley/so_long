@@ -5,7 +5,8 @@ SRCS = \
 	sources/movement.c sources/player.c sources/exit.c sources/move.c 
 OBJS = $(SRCS:.c=.o)
 CC = clang
-FLAGS = -Wall -Wextra -Werror -g
+#FLAGS = -Wall -Wextra -Werror -g
+FLAGS= -Wall -Wextra -I /usr/X11/include -g -L /usr/X11/lib -lX11 -L./minilibx-linux -lmlx -lXext #macOS
 RM = rm -rf
 NAME = so_long
 MINILIBX_DIR = minilibx-linux/libmlx.a -lX11 -lXext
