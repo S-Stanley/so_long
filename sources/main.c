@@ -6,7 +6,7 @@
 /*   By: sserbin <sserbin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 19:01:32 by sserbin           #+#    #+#             */
-/*   Updated: 2021/12/08 01:12:20 by sserbin          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:42:48 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ int	main(int argc, char **argv)
 	t_window		window;
 
 	if (argc != 2)
-		print_and_exit("Please give one map in arg");
+		print_and_exit("Please give one map in arg\n");
 	is_map_ber(argv[1], ".ber");
 	map = setup_map(argv[1]);
 	check_map(map);
