@@ -6,7 +6,7 @@
 /*   By: sserbin <sserbin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 01:29:23 by sserbin           #+#    #+#             */
-/*   Updated: 2021/12/08 01:03:24 by sserbin          ###   ########.fr       */
+/*   Updated: 2021/12/08 01:12:56 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,6 @@ t_parsing	new_line_parsing(t_parsing parsing)
 	return (parsing);
 }
 
-unsigned int	is_white_space(char c)
-{
-	if (c == ' ')
-		return (1);
-	if (c == '\t')
-		return (1);
-	if (c == '\v')
-		return (1);
-	if (c == '\f')
-		return (1);
-	if (c == '\r')
-		return (1);
-	return (0);
-}
-
 t_parsing	push_arr_loop(t_parsing parsing, char *buffer)
 {
 	while (is_white_space(buffer[parsing.i]))
@@ -43,13 +28,6 @@ t_parsing	push_arr_loop(t_parsing parsing, char *buffer)
 	parsing.arr = push_arr(
 			parsing.arr, create_str_from_char(buffer[parsing.i++]));
 	return (parsing);
-}
-
-void	free_and_exit_error_buff(char *buffer, t_parsing parsing)
-{
-	free(buffer);
-	free_lst(parsing.map);
-	print_and_exit("Error while allocating buffer\n");
 }
 
 t_parsing	new_line_buffer(t_parsing parsing, char *buffer)
@@ -63,13 +41,6 @@ t_parsing	new_line_buffer(t_parsing parsing, char *buffer)
 	}
 	else
 		parsing = push_arr_loop(parsing, buffer);
-	return (parsing);
-}
-
-t_parsing	arr_not_empty(t_parsing parsing)
-{
-	parsing.map = lst_push_back(parsing.arr, parsing. map);
-	free_that_matrice(parsing.arr);
 	return (parsing);
 }
 

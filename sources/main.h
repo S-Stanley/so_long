@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sserbin <stanleyserbin@gmail.com>          +#+  +:+       +#+        */
+/*   By: sserbin <sserbin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 19:01:36 by sserbin           #+#    #+#             */
-/*   Updated: 2021/11/21 19:01:37 by sserbin          ###   ########.fr       */
+/*   Updated: 2021/12/08 01:13:33 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,5 +106,8 @@ char			*create_str_from_char(char c);
 void			put_str(char *str);
 void			print_and_exit_game(char *str, t_window win);
 unsigned int	check_map_case(t_map *map);
+unsigned int	is_white_space(char c);
+t_parsing		arr_not_empty(t_parsing parsing);
+void			free_and_exit_error_buff(char *buffer, t_parsing parsing);
 
 #endif

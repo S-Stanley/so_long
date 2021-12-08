@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   string_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sserbin <stanleyserbin@gmail.com>          +#+  +:+       +#+        */
+/*   By: sserbin <sserbin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 00:42:50 by sserbin           #+#    #+#             */
-/*   Updated: 2021/11/30 00:42:51 by sserbin          ###   ########.fr       */
+/*   Updated: 2021/12/08 01:11:49 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,4 +55,19 @@ char	*ft_strdup(const char *str)
 	}
 	to_return[i] = 0;
 	return (to_return);
+}
+
+unsigned int	is_white_space(char c)
+{
+	if (c == ' ')
+		return (1);
+	if (c == '\t')
+		return (1);
+	if (c == '\v')
+		return (1);
+	if (c == '\f')
+		return (1);
+	if (c == '\r')
+		return (1);
+	return (0);
 }
