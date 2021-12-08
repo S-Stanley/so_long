@@ -6,7 +6,7 @@
 /*   By: sserbin <sserbin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/21 19:01:32 by sserbin           #+#    #+#             */
-/*   Updated: 2021/12/08 20:42:48 by sserbin          ###   ########.fr       */
+/*   Updated: 2021/12/08 20:53:14 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,39 @@
 #include "../minilibx-linux/mlx.h"
 #include <string.h>
 
+unsigned int	count_occurence(const char *str, char c)
+{
+	unsigned int	i;
+	unsigned int	count;
+
+	i = 0;
+	count = 0;
+	while (str[i])
+	{
+		if (str[i] == c)
+			count++;
+		i++;
+	}
+	return (count);
+}
+
 void	is_map_ber(const char *str, const char *ext)
 {
 	unsigned int	i;
 	unsigned int	x;
+	unsigned int	occurence;
 
+	occurence = count_occurence(str, '.');
 	i = 0;
 	x = 0;
-	while (str[i] && str[i] != '.')
+	while (str[i] && occurence != 0)
+	{
+		if (str[i] == '.')
+			occurence--;
+		if (occurence == 0)
+			break ;
 		i++;
+	}
 	while (str[i] || ext[x])
 	{
 		if (str[i] != ext[x])
