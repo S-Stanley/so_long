@@ -6,7 +6,7 @@
 /*   By: sserbin <sserbin@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/30 01:29:23 by sserbin           #+#    #+#             */
-/*   Updated: 2021/12/08 00:44:39 by sserbin          ###   ########.fr       */
+/*   Updated: 2021/12/08 01:03:24 by sserbin          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,34 @@ t_parsing	push_arr_loop(t_parsing parsing, char *buffer)
 	return (parsing);
 }
 
+void	free_and_exit_error_buff(char *buffer, t_parsing parsing)
+{
+	free(buffer);
+	free_lst(parsing.map);
+	print_and_exit("Error while allocating buffer\n");
+}
+
+t_parsing	new_line_buffer(t_parsing parsing, char *buffer)
+{
+	if (buffer[parsing.i] == '\n')
+	{
+		if (parsing.arr)
+			parsing = new_line_parsing(parsing);
+		else
+			parsing.i++;
+	}
+	else
+		parsing = push_arr_loop(parsing, buffer);
+	return (parsing);
+}
+
+t_parsing	arr_not_empty(t_parsing parsing)
+{
+	parsing.map = lst_push_back(parsing.arr, parsing. map);
+	free_that_matrice(parsing.arr);
+	return (parsing);
+}
+
 t_map	*get_map_from_file(int fd, t_parsing parsing, int reading)
 {
 	char			*buffer;
@@ -55,38 +83,16 @@ t_map	*get_map_from_file(int fd, t_parsing parsing, int reading)
 	{
 		buffer = malloc(sizeof(char *) * (buffer_size + 1));
 		if (!buffer)
-		{
-			free(buffer);
-			free_that_matrice(parsing.map);
-			print_and_exit("Error while allocating buffer\n");
-		}
+			free_and_exit_error_buff(buffer, parsing);
 		reading = read(fd, buffer, buffer_size);
-		if (reading == 0)
-		{
-			free(buffer);
-			return (parsing.map);
-		}
 		buffer[reading] = 0;
 		parsing.i = 0;
 		while (buffer[parsing.i])
-		{
-			if (buffer[parsing.i] == '\n')
-			{
-				if (parsing.arr)
-					parsing = new_line_parsing(parsing);
-				else
-					parsing.i++;
-			}
-			else
-				parsing = push_arr_loop(parsing, buffer);
-		}
+			parsing = new_line_buffer(parsing, buffer);
 		free(buffer);
 	}
 	if (parsing.arr)
-	{
-		parsing.map = lst_push_back(parsing.arr, parsing. map);
-		free_that_matrice(parsing.arr);
-	}
+		parsing = arr_not_empty(parsing);
 	return (parsing.map);
 }
 
